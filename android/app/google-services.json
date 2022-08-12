@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "324963231875",
+    "project_id": "reset-20c95",
+    "storage_bucket": "reset-20c95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324963231875:android:6db1a6db3ac768467ad3b6",
+        "android_client_info": {
+          "package_name": "com.vinayak.reset"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324963231875-9l7sm6pqor8ku659nj68qloek27jjbbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr9QoKLlHNiFMhfeIK2hlM9AJaEAZP50g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324963231875-9l7sm6pqor8ku659nj68qloek27jjbbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
