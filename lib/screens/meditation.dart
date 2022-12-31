@@ -1,9 +1,15 @@
-  import 'package:flutter/material.dart';
+  import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
   import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:reset/screens/Meditation%20Screen/Breathe.dart';
+
+import '../Models/Database.dart';
+import 'Meditation Screen/Calming.dart';
 
   class meditation extends StatelessWidget {
-    const meditation({Key? key}) : super(key: key);
-
+    final User? firebaseUser;
+    final UserModel? userModel;
+    meditation({Key? key, this.firebaseUser, this.userModel}) : super(key: key);
     @override
     Widget build(BuildContext context) {
       return  Scaffold(
@@ -23,7 +29,9 @@
                 height: 50,
                 child: TextButton(style: OutlinedButton.styleFrom(shape: StadiumBorder(),backgroundColor: (Colors.black),
       ),
-                    onPressed: (){},
+                    onPressed: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>BreathingScreen(userModel: userModel,firebaseUser: firebaseUser,)));
+                    },
                     child: Text("Breathe",style: TextStyle(color: Colors.white),)),
               )],
             ),
@@ -37,7 +45,12 @@
                     style: OutlinedButton.styleFrom(
                   shape: StadiumBorder(),
                   side: BorderSide(color: Colors.black,width: 2)
-                ),onPressed: (){}, child: Text("Calming Sounds",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),)),
+                ),onPressed: (){
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context)=>CalmingSounds(firebaseUser: firebaseUser,userModel: userModel,)));
+                }, child: Text(
+                  "Calming Sounds",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),)),
               )],
             )
           ]

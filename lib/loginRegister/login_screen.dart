@@ -1,10 +1,10 @@
-import 'package:reset/constants.dart';
-import 'package:reset/chat_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:reset/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/components/RoundedButtons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-
+import '../Models/Database.dart';
 import '../mainscreen.dart';
 class LoginScreen extends StatefulWidget {
   static const String id ="lpgin_screen";
@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -39,43 +39,49 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48.0,
               ),
               TextField(
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
                 onChanged: (value) {
                   //Do something with the user input.
                   email=value;
                 },
                 decoration: kTextfieldDecoration.copyWith(hintText: "Enter your email")
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8.0,
               ),
               TextField(
                   obscureText: true,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 onChanged: (value) {
                   //Do something with the user input.
                   password=value;
                 },
                 decoration: kTextfieldDecoration.copyWith(hintText:"Enter your password")
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24.0,
               ),
               RoundedButton(Colors.lightBlueAccent, "login",()async {
                 setState(() {
                   showspinner=true;
                 });
+
                 try{
                 final user=await _auth.signInWithEmailAndPassword(email: email, password: password);
                 if(user!=null){
-                  Navigator.pushNamed(context,MyApp.id);
+                  String uid = user.user!.uid;
+                  DocumentSnapshot userdata = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+                  UserModel newUser = UserModel.fromMap(userdata.data() as Map<String,dynamic>);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MyApp(userModel: newUser,firebaseUser: user.user!,)));
+
                 }
                 setState(() {
                   showspinner=false;

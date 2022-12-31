@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>876833123019-16p4m90j66cl2nammubifreomf6bngtf.apps.googleusercontent.com</string>
+	<string>324963231875-jq13o8m7gl44up68l4gfovne2bpkg34d.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.876833123019-16p4m90j66cl2nammubifreomf6bngtf</string>
+	<string>com.googleusercontent.apps.324963231875-jq13o8m7gl44up68l4gfovne2bpkg34d</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAZeLYFaaynP4fbDiz3xe4lXMMskmID3is</string>
+	<string>AIzaSyA7wSEquEGv-3O8I47w5pxmbhzGGrqJ19M</string>
 	<key>GCM_SENDER_ID</key>
-	<string>876833123019</string>
+	<string>324963231875</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>co.VinayakGoel.flashChat</string>
+	<string>com.vinayak.reset</string>
 	<key>PROJECT_ID</key>
-	<string>flash-chat-6ba51</string>
+	<string>reset-20c95</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flash-chat-6ba51.appspot.com</string>
+	<string>reset-20c95.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:876833123019:ios:93295e42e14de7e5d4c94e</string>
+	<string>1:324963231875:ios:8f9bb1e3a22f6a427ad3b6</string>
 </dict>
 </plist>

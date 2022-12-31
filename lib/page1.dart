@@ -1,32 +1,40 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:reset/drawer.dart';
+import 'package:reset/components/drawer.dart';
 import 'package:reset/screens/Calender.dart';
 import 'package:reset/screens/HomePage.dart';
 import 'package:reset/screens/book.dart';
 import 'package:reset/screens/call.dart';
 import 'package:reset/screens/meditation.dart';
 
-class MyHomePage2 extends StatefulWidget {
-  const MyHomePage2({Key? key, required this.title}) : super(key: key);
-  final String title;
+import 'Models/Database.dart';
 
+class MyHomePage2 extends StatefulWidget {
+  final UserModel? userModel;
+  final User? firebaseUser;
+
+  const MyHomePage2({Key? key, required this.title,this.firebaseUser,this.userModel}) : super(key: key);
+  final String title;
   @override
   State<MyHomePage2> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage2> {
   int index=2;
-  final screens=[
-    Call(),
-    Calender(),
-    HomePage(),
-    meditation(),
-    book()
-  ];
+
 
   @override
   Widget build(BuildContext context) {
+
+    final screens=[
+      Call(userModel:widget.userModel ,firebaseUser: widget.firebaseUser,),
+      Calender(),
+      HomePage(),
+      meditation(),
+      book()
+    ];
+
     return Scaffold(
       extendBody: true,
       appBar: AppBar(

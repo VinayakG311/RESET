@@ -1,9 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/chat_screen.dart';
+import 'package:reset/screens/ChatwithProffesional.dart';
+
+import '../Models/Database.dart';
+import '../components/Helpers.dart';
 
 class Call extends StatefulWidget {
-  const Call({Key? key}) : super(key: key);
+  final UserModel? userModel;
+  final User? firebaseUser;
 
+  Call({Key? key,this.userModel,this.firebaseUser}) : super(key: key);
   @override
   State<Call> createState() => _CallState();
 }
@@ -11,35 +19,95 @@ class Call extends StatefulWidget {
 class _CallState extends State<Call> {
   @override
   Widget build(BuildContext context) {
-    List professionals=["Dr Mark","Dr Martha","Dr Jacob","Dr samantha","Dr Bailey","Dr Anthony","Dr Adira","Dr sarah","Dr Alice","Dr Mathew"];
-    return  Scaffold(
-      body:  ListView(
-        children:[
-          Padding(padding: const EdgeInsets.only(left: 20.0), child: Text("Meet the Proffesionals", style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),),
-          for(var i=0;i<professionals.length;i++) Proffesionals(professionals[i]),
-          ],
-      ),
+        return  SafeArea(
+    child: Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+    TextButton(
+            child: Text("Click this"),
+            onPressed: (){
+              Navigator.of(context).pushNamed(ChatWithProffesional.id);
+            },
+          ),
+
+        Expanded(
+          child: Container(
+          child: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("chatrooms").where("participants.${widget.userModel?.uid}",isEqualTo:true).snapshots(),
+          builder: (context,snapshots){
+          if(snapshots.connectionState== ConnectionState.active){
+
+          if(snapshots.hasData){
+          QuerySnapshot chatRoomSnapshot = snapshots.data as QuerySnapshot;
+
+          return ListView.builder(
+          itemCount: chatRoomSnapshot.docs.length,
+          itemBuilder: (context,index){
+
+          ChatRoomModel chatRoomModel = ChatRoomModel.fromMap(chatRoomSnapshot.docs[index].data() as Map<String,dynamic>);
+          Map<String?,dynamic> participants = chatRoomModel.participants!;
+
+          List<String?> ParticipantKeys = participants.keys.toList();
+          ParticipantKeys.remove(widget.userModel?.uid);
+          //  return// Container();
+          return FutureBuilder(
+          future: FirebaseHelperPro.GetUserModelById(ParticipantKeys[0]!),
+          builder: (context,userData){
+
+          if(userData.connectionState == ConnectionState.done){
+          ProfessionalModel targetdata = userData.data as ProfessionalModel;
+          return  ListTile(
+          onTap: (){
+          Navigator.push(context,
+          MaterialPageRoute(builder:
+          (context)=>
+          ChatScreen(
+          targetUser: targetdata,
+          chatRoomModel: chatRoomModel,
+          userModel: widget.userModel,
+          firebaseUser: widget.firebaseUser)));
+          },
+          title: Text(targetdata.firstname.toString()),
+          subtitle: Text(chatRoomModel.lastMessage.toString()),
+          )
+          ;
+          }
+          else{
+          return Container();
+          }
+
+          });
+
+          });
+
+          }
+          else if(snapshots.hasError){
+          return const Center(child: Text("Error"),);
+
+          }
+          else{
+          return const Center(child: Text("No chats"),);
+          }
+
+          }
+          else{
+          return const Center(child: CircularProgressIndicator(),);
+
+          }
+
+          },
+          ),
+          ),
+        ),
+      ],
+    ),
     );
+    //     ],
+    //   ),
+    // );
   }
 
-  Row Proffesionals(name) {
 
-    return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: SizedBox(
-                width: 300,
-                height: 60,
-                child: OutlinedButton(
-                      style: OutlinedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),), side: BorderSide(color: Colors.black,width: 2)
-                      ),onPressed: (){Navigator.push(context,new MaterialPageRoute(builder: (context)=> ChatScreen()));}, child: Text(name,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),)),
-              ),
-            ),
-
-          ],
-        );
-  }
 }
+
+

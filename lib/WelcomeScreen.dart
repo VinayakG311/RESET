@@ -1,12 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:reset/loginRegister/login_screen.dart';
 import 'package:reset/loginRegister/registration_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:reset/components/RoundedButtons.dart';
+
+import 'Models/Database.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id ="welcome_screen";
+  // final UserModel? userModel;
+  // final User? firebaseUser;
+
+  //WelcomeScreen({Key? key,this.userModel,this.firebaseUser}) : super(key: key);
   @override
+
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 

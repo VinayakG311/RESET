@@ -1,9 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:reset/screens/Book%20Screen%20/Journal.dart';
+
+import '../Models/Database.dart';
 
 
-class book extends StatelessWidget {
-  const book({Key? key}) : super(key: key);
+class book extends StatefulWidget {
+  final UserModel? userModel;
+  final User? firebaseUser;
+  book({Key? key, this.userModel, this.firebaseUser}) : super(key: key);
 
+  @override
+  State<book> createState() => _bookState();
+}
+
+class _bookState extends State<book> {
+  //String name = userModel?.firstname ?? "user";
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -17,7 +29,7 @@ class book extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(30, 5, 25,0),
-            child: Row(children: [Text("Hi Charlie, I am Lia",style: TextStyle(fontSize: 30.0))],
+            child: Row(children: [Text(widget.userModel?.firstname ?? "user"+" , I am Lia",style: TextStyle(fontSize: 30.0))],
           )),
           Row(
             children: [
@@ -49,19 +61,34 @@ class book extends StatelessWidget {
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0,5.0,25.0,10.0),
-                child: Image.asset("images/bookEmojis/Great.png",width: 75,),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25.0,5.0,25.0,10.0),
+                  child: Image.asset("images/bookEmojis/Great.png",width: 75,),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Journal(val: 0,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
+                },
               ),
 
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0,5.0,25.0,10.0),
-                child: Image.asset("images/bookEmojis/Good.png",width: 75,),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25.0,5.0,25.0,10.0),
+                  child: Image.asset("images/bookEmojis/Good.png",width: 75,),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Journal(val: 1,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0,5.0,25.0,10.0),
-                child: Image.asset("images/bookEmojis/Ok.png",width: 75,),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25.0,5.0,25.0,10.0),
+                  child: Image.asset("images/bookEmojis/Ok.png",width: 75,),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Journal(val: 2,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
+                },
               ),
             ],
           ),
@@ -84,18 +111,33 @@ class book extends StatelessWidget {
             //crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0,15.0,25.0,0.0),
-                child: Image.asset("images/bookEmojis/Bad.png",width: 75,),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25.0,15.0,25.0,0.0),
+                  child: Image.asset("images/bookEmojis/Bad.png",width: 75,),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Journal(val: 3,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
+                },
               ),
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0,15.0,25.0,0.0),
-                child: Image.asset("images/bookEmojis/Awful.png",width: 75,),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25.0,15.0,25.0,0.0),
+                  child: Image.asset("images/bookEmojis/Awful.png",width: 75,),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Journal(val: 4,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25.0,15.0,25.0,0.0),
-                child: Image.asset("images/bookEmojis/Unsure.png",width: 75,),
+              InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(25.0,15.0,25.0,0.0),
+                  child: Image.asset("images/bookEmojis/Unsure.png",width: 75,),
+                ),
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Journal(val: 5,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
+                },
               ),
             ],
           ),
