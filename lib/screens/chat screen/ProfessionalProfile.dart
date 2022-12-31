@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:reset/screens/chat%20screen/Booking.dart';
 import '../../Models/Database.dart';
 import '../../components/Widgets.dart';
 import '../../pag1-method2.dart';
@@ -64,7 +65,7 @@ class _ProfessionalProfileState extends State<ProfessionalProfile> {
           })
         ],
         title: InkWell(
-          child: Text("Journal"),
+          child: Text("Talk"),
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyHomePage(userModel: widget.userModel,firebaseuser: widget.firebaseUser, title: 'RESET',)));
           },),
@@ -153,10 +154,12 @@ class _ProfessionalProfileState extends State<ProfessionalProfile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Booking(userModel: widget.userModel,model: widget.model,firebaseUser: widget.firebaseUser,type: 0,)));
 
 
                   }, icon: Icon(Icons.call,size: 40,)),
                   IconButton(onPressed: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Booking(userModel: widget.userModel,model: widget.model,firebaseUser: widget.firebaseUser,type: 1,)));
 
                   }, icon: Icon(CupertinoIcons.chat_bubble,size: 40,))
                 ],

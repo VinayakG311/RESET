@@ -208,7 +208,6 @@ class _AllSongsState extends State<AllSongs> {
           else{
             if(widget.selected==0){
               return FirebaseFirestore.instance.collection("MusicCollection").where("name",isEqualTo: widget.controller.text).snapshots();
-
             }
             else if(widget.selected==1){
               return FirebaseFirestore.instance.collection("MusicCollection").where("name",isEqualTo: widget.controller.text).orderBy("Likes",descending: true).snapshots();

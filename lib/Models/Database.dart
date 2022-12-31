@@ -281,3 +281,33 @@ class TaskModel{
     };
   }
 }
+
+
+class Appointment{
+  String? type;
+  String? uid;
+  String? Patient;
+  String? Doctor;
+  String? Timing;
+  String? Day;
+
+  Appointment(this.uid, this.Patient, this.Doctor, this.Timing,this.Day,this.type);
+  Map<String,dynamic> toMap(){
+    return{
+      "uid":uid,
+      "Patient":Patient,
+      "Doctor":Doctor,
+      "Timing":Timing,
+      "Day":Day,
+      "type":type,
+    };
+  }
+  Appointment.fromMap(Map<String,dynamic> map){
+    uid=map["uid"];
+    Patient=map["Patient"];
+    Doctor=map["Doctor"];
+    Timing=map["Timing"];
+    Day=map["Day"];
+    type=map["type"];
+  }
+}
