@@ -105,6 +105,7 @@ class ProfessionalModel{
   String? Gender;
   String? certificate;
   int? rating;
+  int? yearsofexp;
   String? image;
   String? Qualification;
   String? Priorexp;
@@ -126,6 +127,7 @@ class ProfessionalModel{
     Priorexp=map["Priorexp"];
     chat=map["chat"];
     call=map["call"];
+    yearsofexp=map["yearsofexp"];
 
   }
   Map<String,dynamic> toMap(){
@@ -143,6 +145,7 @@ class ProfessionalModel{
       "Qualification":Qualification,
       "Priorexp":Priorexp,
       "chat":chat,
+      "yearsofexp":yearsofexp,
       "call":call,
     };
   }

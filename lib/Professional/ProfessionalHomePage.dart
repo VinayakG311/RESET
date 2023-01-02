@@ -34,18 +34,17 @@ class ProfessionalHomePage extends StatefulWidget {
 }
 
 class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
-  int selected=3;
-
+  int selected=2;
   @override
   Widget build(BuildContext context) {
     void _onNavigationItemSelected(index) {
       widget.pageIndex.value = index;
     }
     final screens=[
-      Appointments(),
+      CallRooms(),
       ChatRooms(firebaseUser: widget.firebaseuser,userModel: widget.userModel,),
-      AddPost(),
-      Community(),
+      Appointments(),
+      Community(type: 0,firebaseUser: widget.firebaseuser,model: widget.userModel!,),
       EarningAndStats(),
     ];
     return Scaffold(
@@ -75,11 +74,9 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
           unselectedItemIconColor: Colors.black,
         ),
         items:  [
-          FFNavigationBarItem(iconData:(Icons.calendar_today),label: "",),
+          FFNavigationBarItem(iconData:(CupertinoIcons.chat_bubble_text),label: "",),
           FFNavigationBarItem(iconData:(Icons.call),label: ""),
-          FFNavigationBarItem(iconData: Icons.add,label: "",),
-   //    Padding(),
-       //   GlowingActionButton(color: Colors.black, icon: Icons.attach_money, onPressed: (){}),
+          FFNavigationBarItem(iconData: Icons.home,label: "",),
           FFNavigationBarItem(iconData:(Icons.view_agenda),label: ""),
           FFNavigationBarItem(iconData:(Icons.attach_money),label: ""),
           //   BottomNav
@@ -88,16 +85,17 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
         onSelectTab: (index) {
           setState(() {
             selected=index;
-            if(selected==2){
-              selected+=1;
-              Navigator.of(context, rootNavigator:true).push( // ensures fullscreen
-                  CupertinoPageRoute(
-                    fullscreenDialog: true,
-                      builder: (BuildContext context) {
-                        return AddPost();
-                      }
-                  ) );
-            }
+
+            // if(selected==2){
+            //   selected+=1;
+            //   Navigator.of(context, rootNavigator:true).push( // ensures fullscreen
+            //       CupertinoPageRoute(
+            //         fullscreenDialog: true,
+            //           builder: (BuildContext context) {
+            //             return Appointments();
+            //           }
+            //       ) );
+            // }
           });
         },
         //showSelectedLabels: false,

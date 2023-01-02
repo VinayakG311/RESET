@@ -11,6 +11,8 @@ class EarningAndStats extends StatefulWidget {
 class _EarningAndStatsState extends State<EarningAndStats> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text("Earning"),
+    );
   }
 }

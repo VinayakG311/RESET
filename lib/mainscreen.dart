@@ -10,6 +10,7 @@ import 'package:reset/loginRegister/registration_screen.dart';
 import 'package:reset/screens/CreateProfile.dart';
 import 'package:reset/screens/ChatwithProffesional.dart';
 import 'package:reset/screens/Profile%20screen.dart';
+import 'package:reset/screens/call.dart';
 import 'package:reset/screens/chat%20screen/ProfessionalProfile.dart';
 import 'Models/Database.dart';
 import 'pag1-method2.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         RegisterProfessional.id:(context)=>RegisterProfessional(),
         ProfessionalWelcome.id:(context)=>ProfessionalWelcome(),
         ProfessionalProfile.id:(context)=>ProfessionalProfile(),
+        Call.id:(context)=>Call(firebaseUser: firebaseUser,userModel: userModel)
       },
 
 

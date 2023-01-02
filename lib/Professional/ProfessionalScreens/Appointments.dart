@@ -10,6 +10,8 @@ class Appointments extends StatefulWidget {
 class _AppointmentsState extends State<Appointments> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text("hi"),
+    );
   }
 }

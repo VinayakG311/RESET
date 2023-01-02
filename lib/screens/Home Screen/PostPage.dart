@@ -10,10 +10,11 @@ import '../../pag1-method2.dart';
 import '../Profile screen.dart';
 
 class PostPage extends StatefulWidget {
-  PostPage({Key? key, this.firebaseUser, this.userModel, required this.posts}) : super(key: key);
+  PostPage({Key? key, this.firebaseUser, this.userModel, required this.posts, this.model}) : super(key: key);
   final User? firebaseUser;
   final UserModel? userModel;
   final Posts posts;
+  final ProfessionalModel? model;
 
   @override
   State<PostPage> createState() => _PostPageState();
@@ -29,15 +30,18 @@ class _PostPageState extends State<PostPage> {
     return Scaffold(
       appBar:  AppBar(
         actions: [
+          if(widget.userModel!=null)
           ProfileIcon(
               context,(){Navigator.of(context)
               .push(MaterialPageRoute(
               builder: (context)=> ProfileScreen(userModel: widget.userModel,firebaseUser: widget.firebaseUser,) ));
           })
+
         ],
         title: InkWell(
           child: const Text("RESET"),
           onTap: (){
+            if(widget.userModel!=null)
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> MyHomePage(userModel: widget.userModel,firebaseuser: widget.firebaseUser, title: 'RESET',)));
           },),
         titleTextStyle: const TextStyle(color: Colors.black,fontSize: 50.0,fontWeight: FontWeight.bold),
@@ -58,9 +62,9 @@ class _PostPageState extends State<PostPage> {
                     child: Text.rich(
                         TextSpan(
                             children: [
-                              TextSpan(text: name!,style:const TextStyle(color:Colors.black,fontSize:15,fontWeight: FontWeight.bold), ),
+                              TextSpan(text: name,style:const TextStyle(color:Colors.black,fontSize:15,fontWeight: FontWeight.bold), ),
                               const TextSpan(text: "   "),
-                              TextSpan(text:caption!,
+                              TextSpan(text:caption,
                                 style: const TextStyle(color:Colors.black,fontSize:15),
                               )
                             ]
@@ -74,7 +78,7 @@ class _PostPageState extends State<PostPage> {
             Expanded(
                 child: Container(
                   child: StreamBuilder(
-                    stream: FirebaseFirestore.instance.collection("Posts").doc(widget.posts.uid).collection("Comments").snapshots(),
+                    stream: FirebaseFirestore.instance.collection("Posts").doc(widget.posts.uid).collection("Comments").orderBy("timeCommented").snapshots(),
                     builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                       if(snapshot.connectionState==ConnectionState.active){
                         if(snapshot.hasData){
@@ -116,7 +120,21 @@ class _PostPageState extends State<PostPage> {
                       )),
                   IconButton(
                       onPressed:() async {
-                        CommentModel comment = CommentModel(likes: 0,content: controller.text,sender: widget.userModel?.firstname,timeCommented: DateTime.now().toString(),uid: Uuid().v1());
+                        CommentModel comment;
+                        if(widget.userModel!=null) {
+                          comment = CommentModel(likes: 0,
+                              content: controller.text,
+                              sender: widget.userModel?.firstname,
+                              timeCommented: DateTime.now().toString(),
+                              uid: Uuid().v1());
+                        }
+                        else{
+                          comment = CommentModel(likes: 0,
+                              content: controller.text,
+                              sender: widget.model?.firstname,
+                              timeCommented: DateTime.now().toString(),
+                              uid: Uuid().v1());
+                        }
                         await FirebaseFirestore.instance.collection("Posts").doc(widget.posts.uid).collection("Comments").doc(comment.uid).set(comment.toMap());
                         controller.clear();
                       },

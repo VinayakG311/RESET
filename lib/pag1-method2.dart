@@ -37,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         actions: [
            ProfileIcon(
                context,(){Navigator.of(context)

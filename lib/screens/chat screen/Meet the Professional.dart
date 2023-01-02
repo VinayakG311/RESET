@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/Professional/ProfileScreenProfessional.dart';
-
 import '../../Models/Database.dart';
 import '../../components/Widgets.dart';
 import '../../pag1-method2.dart';
 import '../Profile screen.dart';
+import '../call.dart';
 import 'ProfessionalProfile.dart';
 
 class MeetTheProfessional extends StatefulWidget {
@@ -20,7 +20,7 @@ class MeetTheProfessional extends StatefulWidget {
 
 class _MeetTheProfessionalState extends State<MeetTheProfessional> {
   TextEditingController controller = TextEditingController();
-  List<String> list = <String>['Sort by:', 'rating', 'Alphabetical','Years of Experience'];
+  List<String> list = <String>['Sort by:', 'rating','Years of Experience'];
   String dropdownValue = 'Sort by:';
   int selected=0;
   @override
@@ -29,7 +29,7 @@ class _MeetTheProfessionalState extends State<MeetTheProfessional> {
         body: Column(
         //  crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 20),
               child: Text("Meet the Professionals",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
             ),
@@ -52,7 +52,10 @@ class _MeetTheProfessionalState extends State<MeetTheProfessional> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  RoundedButton(Colors.black, "inbox", () { }, Colors.white),
+                  RoundedButton(Colors.black, "inbox", () {
+
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Call(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
+                  }, Colors.white),
                   DropdownButton<String>(
                     alignment: Alignment.topRight,
                     value: dropdownValue,
@@ -66,7 +69,6 @@ class _MeetTheProfessionalState extends State<MeetTheProfessional> {
                       setState(() {
                         dropdownValue = value!;
                         selected=list.indexOf(value);
-
                       });
                     },),
                 ],
@@ -74,7 +76,33 @@ class _MeetTheProfessionalState extends State<MeetTheProfessional> {
             ),
             Flexible(
               child: StreamBuilder(
-                stream: FirebaseFirestore.instance.collection("Professional").snapshots(),
+                stream:((){
+                  if(controller.text==""){
+                    if(selected==0){
+                      return FirebaseFirestore.instance.collection("Professional").snapshots();
+                    }
+                    else if(selected==1){
+                      return FirebaseFirestore.instance.collection("Professional").orderBy("rating").snapshots();
+                    }
+                    else if(selected==2){
+                      return FirebaseFirestore.instance.collection("Professional").orderBy("yearsofexp").snapshots();
+                    }
+                  
+                  }
+                  else{
+                    if(selected==0){
+                      return FirebaseFirestore.instance.collection("Professional").where("firstname",isEqualTo: controller.text).snapshots();
+                    }
+                    else if(selected==1){
+                      return FirebaseFirestore.instance.collection("Professional").where("firstname",isEqualTo: controller.text).orderBy("rating").snapshots();
+                    }
+                    else if(selected==2){
+                      return FirebaseFirestore.instance.collection("Professional").where("firstname",isEqualTo: controller.text).orderBy("yearsofexp").snapshots();
+                    }
+                  
+                  }
+                
+                })() ,
                   builder: (BuildContext context,AsyncSnapshot<dynamic> snapshot){
                   if(snapshot.connectionState==ConnectionState.active){
                     if(snapshot.hasData){

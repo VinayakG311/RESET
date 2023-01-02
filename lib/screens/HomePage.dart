@@ -24,6 +24,7 @@ import 'package:reset/screens/Home%20Screen/PostPage.dart';
                       if(snapshot.hasData){
                         QuerySnapshot datasnapshot = snapshot.data as QuerySnapshot;
                         return ListView.builder(
+                          shrinkWrap: true,
                               itemCount: datasnapshot.docs.length,
                               itemBuilder: (context,index){
                                 Posts posts = Posts.fromMap(datasnapshot.docs[index].data() as Map<String,dynamic>);

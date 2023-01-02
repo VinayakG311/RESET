@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reset/screens/chat%20screen/BookingConfirm.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../Models/Database.dart';
@@ -278,7 +279,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                 len=list.length;
                 //print(list);
                 if(list.isNotEmpty) {
-                  return card(appointment: list);
+                  return card(appointment: list,firebaseUser: widget.firebaseUser,userModel: widget.userModel,model: widget.model,);
                 }
                 else{
                   return Container();
@@ -377,8 +378,11 @@ class _ChatState extends State<Chat> {
 // )
 
 class card extends StatefulWidget {
-  const card({Key? key, required this.appointment}) : super(key: key);
+  const card({Key? key, required this.appointment, this.model, this.firebaseUser, this.userModel}) : super(key: key);
   final List<Appointment> appointment;
+  final ProfessionalModel? model;
+  final User? firebaseUser;
+  final UserModel? userModel;
 
   @override
   State<card> createState() => _cardState();
@@ -403,7 +407,38 @@ class _cardState extends State<card> {
                     shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black),borderRadius: BorderRadius.circular(15)),
                       child: Center(child: Text(widget.appointment[i].Timing!))),
                 ),
-                onTap: (){},
+                onTap: (){
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Confirm Appointment?',style: TextStyle(fontSize: 25),),
+                      content: const Text('Do you want to confirm appointment?',style: TextStyle(fontSize: 15),),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () async  {
+                            Appointment newAppoint = widget.appointment[i];
+                            newAppoint.Patient = widget.userModel?.email;
+                            await FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
+                            await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
+
+                            Navigator.pop(context, 'OK');
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ConfirmBooking(userModel: widget.userModel,firebaseUser: widget.firebaseUser,model: widget.model,appointment: widget.appointment[i],)));
+
+                            //  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Calender(userModel: widget.userModel,firebaseuser: widget.firebaseuser,)));
+                          },
+                          child: const Text('OK'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'Cancel');
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                      ],
+                    ),
+                  );
+
+                },
               )
 
 
