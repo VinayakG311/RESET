@@ -23,76 +23,79 @@ class _ProfileProfState extends State<ProfileProf> {
     ProfessionalModel professionalModel = widget.userModel!;
     double? val = professionalModel.rating?.toDouble();
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar:  AppBar(
         leading: const BackButton(color: Colors.black,),
 
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
 
-        children: [
-          Center(child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: CircleAvatar(
-                  backgroundImage:CachedNetworkImageProvider(professionalModel.image!),
-                  radius: 65,
+          children: [
+            Center(child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: CircleAvatar(
+                    backgroundImage:CachedNetworkImageProvider(professionalModel.image!),
+                    radius: 65,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: Text(professionalModel.firstname!,style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
-              ),
-              RatingBarIndicator(
-                  rating: val!,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Icon(Icons.star,color: Colors.amber,);
-                  }),
-
-              Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Qualification",style: TextStyle(color: Colors.grey,fontSize: 25),),
-                    Text(professionalModel.Qualification!),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Prior Experience",style: TextStyle(color: Colors.grey,fontSize: 25)),
-                    Text(professionalModel.Priorexp!),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Charges",style: TextStyle(color: Colors.grey,fontSize: 25)),
-                    Row(
-                      children: [
-                        Text("Chat: "),
-                        Text(professionalModel.chat.toString())
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("Call: "),
-                        Text(professionalModel.call.toString())
-                      ],
-                    ),
-
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: Text(professionalModel.firstname!,style: TextStyle(fontSize: 30,fontWeight: FontWeight.w600),),
                 ),
-              ),
-              SizedBox(height: 20,),
+                RatingBarIndicator(
+                    rating: val!,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Icon(Icons.star,color: Colors.amber,);
+                    }),
+
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Qualification",style: TextStyle(color: Colors.grey,fontSize: 25),),
+                      Text(professionalModel.Qualification!),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text("Prior Experience",style: TextStyle(color: Colors.grey,fontSize: 25)),
+                      Text(professionalModel.Priorexp!),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text("Charges",style: TextStyle(color: Colors.grey,fontSize: 25)),
+                      Row(
+                        children: [
+                          Text("Chat: "),
+                          Text(professionalModel.chat.toString())
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text("Call: "),
+                          Text(professionalModel.call.toString())
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20,),
 
 
-            ],
-          )),
-          InkWell(
-            child: Text("Edit Profile"),
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditProfilePRof(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
-            },
-          )
-        ],
+              ],
+            )),
+            InkWell(
+              child: Text("Edit Profile"),
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditProfilePRof(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
+              },
+            )
+          ],
+        ),
       ),
     );
   }
