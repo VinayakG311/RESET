@@ -5,6 +5,7 @@ import 'package:reset/Models/Database.dart';
 import 'package:reset/Professional/ChatWithUser.dart';
 
 import '../../components/Helpers.dart';
+import '../../components/Widgets.dart';
 
 
 class ChatRooms extends StatefulWidget {
@@ -45,9 +46,36 @@ class _ChatRoomsState extends State<ChatRooms> {
 
                                   if(userData.connectionState == ConnectionState.done){
                                     UserModel targetdata = userData.data as UserModel;
-                                    return  Container(
-                                      decoration: BoxDecoration(shape: BoxShape.rectangle,border: Border.all()),
-                                      child: ListTile(
+                                    return  InkWell(
+                                      child: SizedBox(
+                                        width: 300,
+                                        height: 80,
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black,width: 2),borderRadius: BorderRadius.circular(10)),
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8.0),
+                                                child: Avatar.medium(url: targetdata.image,),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 8.0),
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 10.0),
+                                                      child: Text(targetdata.firstname.toString(),style: TextStyle(fontWeight: FontWeight.w300),),
+                                                    ),
+                                                    SizedBox(height: 2,),
+                                                    Text(chatRoomModel.lastMessage.toString()),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                         onTap: (){
                                           Navigator.push(context,
                                               MaterialPageRoute(builder:
@@ -57,10 +85,7 @@ class _ChatRoomsState extends State<ChatRooms> {
                                                       chatRoomModel: chatRoomModel,
                                                       userModel: widget.userModel ,
                                                       firebaseUser: widget.firebaseUser)));
-                                        },
-                                        title: Text(targetdata.firstname.toString()),
-                                        subtitle: Text(chatRoomModel.lastMessage.toString()),
-                                      ),
+                                        }
                                     )
                                     ;
                                   }

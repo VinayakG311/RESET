@@ -72,7 +72,6 @@
 
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 175.0),
               child: DropdownButton<String>(
@@ -148,8 +147,6 @@
                 ),
               ],
             ),
-
-
             Padding(
               padding: const EdgeInsets.only(left: 50.0,right: 50.0),
               child: Row(

@@ -74,8 +74,8 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
           unselectedItemIconColor: Colors.black,
         ),
         items:  [
-          FFNavigationBarItem(iconData:(CupertinoIcons.chat_bubble_text),label: "",),
-          FFNavigationBarItem(iconData:(Icons.call),label: ""),
+          FFNavigationBarItem(iconData:(Icons.call),label: "",),
+          FFNavigationBarItem(iconData:(CupertinoIcons.chat_bubble_text),label: ""),
           FFNavigationBarItem(iconData: Icons.home,label: "",),
           FFNavigationBarItem(iconData:(Icons.view_agenda),label: ""),
           FFNavigationBarItem(iconData:(Icons.attach_money),label: ""),

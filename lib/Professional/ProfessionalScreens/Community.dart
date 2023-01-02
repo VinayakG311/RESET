@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,68 +30,17 @@ class _CommunityState extends State<Community> {
   Widget build(BuildContext context) {
     List<Widget> list = [MyCommunity(model: widget.model,firebaseUser: widget.firebaseUser,),MyPosts(model: widget.model,firebaseUser: widget.firebaseUser,)];
     int val=widget.type!;
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OutlinedButton(
-                    style:TextButton.styleFrom(
-                      backgroundColor: ((){
-                        if(x==0){
-                          if(val==0){
-                            return Colors.black;
-                          }
-                          else{
-                            return Colors.white;
-                          }
-                        }
-                        else{
-                          return backg1;
-                        }
-                      })(),),
-                    child:Text("Community",style: TextStyle(color:((){
-                      if(x==0){
-                        if(val==1){
-                          return Colors.black;
-                        }
-                        else{
-                          return Colors.white;
-                        }
-                      }
-                      else{
-                        return text1;
-                      }
-                    })()),),
-                    onPressed: () {
-                      setState(() {
-                        x=1;
-                        val2=0;
-                        backg1=Colors.black;
-                        text1=Colors.white;
-                        backg2=Colors.white;
-                        text2=Colors.black;
-                      });
-                    }),
-                OutlinedButton(
-                    style:TextButton.styleFrom(backgroundColor: ((){
-                      if(x==0){
-                        if(val==1){
-                          return Colors.black;
-                        }
-                        else{
-                          return Colors.white;
-                        }
-                      }
-                      else{
-                        return backg2;
-                      }
-                    })()),
-                    child:Text("My Posts",style: TextStyle(color:((){
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              OutlinedButton(
+                  style:TextButton.styleFrom(
+                    backgroundColor: ((){
                       if(x==0){
                         if(val==0){
                           return Colors.black;
@@ -99,30 +50,79 @@ class _CommunityState extends State<Community> {
                         }
                       }
                       else{
-                        return text2;
+                        return backg1;
                       }
-                    })()),),
-                    onPressed: () {
-                      setState(() {
-                        x=1;
-                        val2=1;
-                        backg2=Colors.black;
-                        text2=Colors.white;
-                        backg1=Colors.white;
-                        text1=Colors.black;
-                      });
-                    })
-              ],
-            ),
-
+                    })(),),
+                  child:Text("Community",style: TextStyle(color:((){
+                    if(x==0){
+                      if(val==1){
+                        return Colors.black;
+                      }
+                      else{
+                        return Colors.white;
+                      }
+                    }
+                    else{
+                      return text1;
+                    }
+                  })()),),
+                  onPressed: () {
+                    setState(() {
+                      x=1;
+                      val2=0;
+                      backg1=Colors.black;
+                      text1=Colors.white;
+                      backg2=Colors.white;
+                      text2=Colors.black;
+                    });
+                  }),
+              OutlinedButton(
+                  style:TextButton.styleFrom(backgroundColor: ((){
+                    if(x==0){
+                      if(val==1){
+                        return Colors.black;
+                      }
+                      else{
+                        return Colors.white;
+                      }
+                    }
+                    else{
+                      return backg2;
+                    }
+                  })()),
+                  child:Text("My Posts",style: TextStyle(color:((){
+                    if(x==0){
+                      if(val==0){
+                        return Colors.black;
+                      }
+                      else{
+                        return Colors.white;
+                      }
+                    }
+                    else{
+                      return text2;
+                    }
+                  })()),),
+                  onPressed: () {
+                    setState(() {
+                      x=1;
+                      val2=1;
+                      backg2=Colors.black;
+                      text2=Colors.white;
+                      backg1=Colors.white;
+                      text1=Colors.black;
+                    });
+                  })
+            ],
           ),
-          RoundedButton(Colors.black, "Add Post", () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreatePosts(model: widget.model,firebaseUser: widget.firebaseUser,)));
 
-          },Colors.white),
-          x==0?SingleChildScrollView(child: list[val]):SingleChildScrollView(child: list[val2]),
-        ],
-      ),
+        ),
+        RoundedButton(Colors.black, "Add Post", () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreatePosts(model: widget.model,firebaseUser: widget.firebaseUser,)));
+
+        },Colors.white),
+        x==0?list[val]:list[val2],
+      ],
     );
   }
 }
@@ -140,10 +140,10 @@ class MyCommunity extends StatefulWidget {
 class _MyCommunityState extends State<MyCommunity> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 25.0),
-      child: Container(
-        child:StreamBuilder(
+    return Flexible(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 25.0),
+        child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("Posts").snapshots(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if(snapshot.connectionState==ConnectionState.active){
@@ -170,7 +170,8 @@ class _MyCommunityState extends State<MyCommunity> {
             }
           },
 
-        ),),
+        ),
+      ),
     );
   }
 }
@@ -187,10 +188,10 @@ class MyPosts extends StatefulWidget {
 class _MyPostsState extends State<MyPosts> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 25.0),
-      child: Container(
-        child:StreamBuilder(
+    return Flexible(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 25.0),
+        child: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("Professional").doc(widget.model.uid).collection("posts").snapshots(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if(snapshot.connectionState==ConnectionState.active){
@@ -220,7 +221,8 @@ class _MyPostsState extends State<MyPosts> {
             }
           },
 
-        ),),
+        ),
+      ),
     );
   }
 }
@@ -257,10 +259,13 @@ class _PostsCardState extends State<PostsCard> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(widget.posts.img!,width: 390,),
+
+
+              Uri.parse(widget.posts.img!).isAbsolute==false?Image.file(File(widget.posts.img!),width: 390,):Image.network(widget.posts.img!,width: 390,),
             ],
           ),
-          onDoubleTap: () async {
+
+         onDoubleTap: () async {
 
             setState(() {
               if(isLiked==true){
@@ -281,8 +286,8 @@ class _PostsCardState extends State<PostsCard> {
 
             await FirebaseFirestore.instance.collection("Posts").doc(widget.posts.uid).set(widget.posts.toMap());
 
-            //  print("double");
-          },
+             print("double");
+         },
         ),
 
         Row(
@@ -364,10 +369,8 @@ class _PostsCardState extends State<PostsCard> {
                         }
                       });
                       await FirebaseFirestore.instance.collection("Posts").doc(widget.posts.uid).set(widget.posts.toMap());
-
                     }
                     ,),
-
                 ],
               ),
             ),

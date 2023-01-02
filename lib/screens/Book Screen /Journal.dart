@@ -26,6 +26,7 @@ class _JournalState extends State<Journal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar:  AppBar(
         actions: [
           ProfileIcon(
