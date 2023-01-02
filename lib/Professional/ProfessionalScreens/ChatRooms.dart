@@ -21,99 +21,113 @@ class _ChatRoomsState extends State<ChatRooms> {
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
-      child: StreamBuilder(
-                stream: FirebaseFirestore.instance.collection("chatrooms").where("participants.${widget.userModel?.uid}",isEqualTo:true).snapshots(),
-                builder: (context,snapshots){
-                  if(snapshots.connectionState== ConnectionState.active){
+      child: Column(
 
-                    if(snapshots.hasData){
-                      QuerySnapshot chatRoomSnapshot = snapshots.data as QuerySnapshot;
+        children: [
+          Text("Inbox",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+          StreamBuilder(
+                    stream: FirebaseFirestore.instance.collection("chatrooms").where("participants.${widget.userModel?.uid}",isEqualTo:true).snapshots(),
+                    builder: (context,snapshots){
+                      if(snapshots.connectionState== ConnectionState.active){
 
-                      return ListView.builder(
-                          itemCount: chatRoomSnapshot.docs.length,
-                          itemBuilder: (context,index){
+                        if(snapshots.hasData){
+                          QuerySnapshot chatRoomSnapshot = snapshots.data as QuerySnapshot;
 
-                            ChatRoomModel chatRoomModel = ChatRoomModel.fromMap(chatRoomSnapshot.docs[index].data() as Map<String,dynamic>);
-                            Map<String?,dynamic> participants = chatRoomModel.participants!;
-                            List<String?> ParticipantKeys = participants.keys.toList();
+                          return ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: chatRoomSnapshot.docs.length,
+                              itemBuilder: (context,index){
 
-                            ParticipantKeys.remove(widget.userModel?.uid);
-                            //  return// Container();
+                                ChatRoomModel chatRoomModel = ChatRoomModel.fromMap(chatRoomSnapshot.docs[index].data() as Map<String,dynamic>);
+                                Map<String?,dynamic> participants = chatRoomModel.participants!;
+                                List<String?> ParticipantKeys = participants.keys.toList();
 
-                            return FutureBuilder(
-                                future: FirebaseHelper.GetUserModelById(ParticipantKeys[0]!),
-                                builder: (context,userData){
+                                ParticipantKeys.remove(widget.userModel?.uid);
+                                //  return// Container();
 
-                                  if(userData.connectionState == ConnectionState.done){
-                                    UserModel targetdata = userData.data as UserModel;
-                                    return  InkWell(
-                                      child: SizedBox(
-                                        width: 300,
-                                        height: 80,
-                                        child: Card(
-                                          shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black,width: 2),borderRadius: BorderRadius.circular(10)),
-                                          child: Row(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 8.0),
-                                                child: Avatar.medium(url: targetdata.image,),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(left: 8.0),
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                return FutureBuilder(
+                                    future: FirebaseHelper.GetUserModelById(ParticipantKeys[0]!),
+                                    builder: (context,userData){
+
+                                      if(userData.connectionState == ConnectionState.done){
+                                        UserModel targetdata = userData.data as UserModel;
+                                        return  Padding(
+                                          padding: const EdgeInsets.all(18.0),
+                                          child: InkWell(
+                                            onDoubleTap: (){
+                                              print(targetdata.image);
+                                            },
+                                            child: SizedBox(
+                                              width: 300,
+                                              height: 80,
+                                              child: Card(
+                                                shape: RoundedRectangleBorder(side: BorderSide(color: Colors.black,width: 2),borderRadius: BorderRadius.circular(10)),
+                                                child: Row(
                                                   children: [
                                                     Padding(
-                                                      padding: const EdgeInsets.only(left: 10.0),
-                                                      child: Text(targetdata.firstname.toString(),style: TextStyle(fontWeight: FontWeight.w300),),
+                                                      padding: const EdgeInsets.only(left: 8.0),
+                                                      child: Avatar.medium(url: targetdata.image,),
                                                     ),
-                                                    SizedBox(height: 2,),
-                                                    Text(chatRoomModel.lastMessage.toString()),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 8.0),
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(left: 10.0),
+                                                            child: Text(targetdata.firstname.toString(),style: TextStyle(fontWeight: FontWeight.w300),),
+                                                          ),
+                                                          SizedBox(height: 2,),
+                                                          Text(chatRoomModel.lastMessage.toString()),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
-                                            ],
+                                            ),
+                                              onTap: (){
+                                                Navigator.push(context,
+                                                    MaterialPageRoute(builder:
+                                                        (context)=>
+                                                        ChatWithUser(
+                                                            targetUser: targetdata,
+                                                            chatRoomModel: chatRoomModel,
+                                                            userModel: widget.userModel ,
+                                                            firebaseUser: widget.firebaseUser)));
+                                              }
                                           ),
-                                        ),
-                                      ),
-                                        onTap: (){
-                                          Navigator.push(context,
-                                              MaterialPageRoute(builder:
-                                                  (context)=>
-                                                  ChatWithUser(
-                                                      targetUser: targetdata,
-                                                      chatRoomModel: chatRoomModel,
-                                                      userModel: widget.userModel ,
-                                                      firebaseUser: widget.firebaseUser)));
-                                        }
-                                    )
-                                    ;
-                                  }
-                                  else{
-                                    return Container();
-                                  }
+                                        )
+                                        ;
+                                      }
+                                      else{
+                                        return Container();
+                                      }
 
-                                });
+                                    });
 
-                          });
+                              });
 
-                    }
-                    else if(snapshots.hasError){
-                      return const Center(child: Text("Error"),);
+                        }
+                        else if(snapshots.hasError){
+                          return const Center(child: Text("Error"),);
 
-                    }
-                    else{
-                      return const Center(child: Text("No chats"),);
-                    }
+                        }
+                        else{
+                          return const Center(child: Text("No chats"),);
+                        }
 
-                  }
-                  else{
-                    return const Center(child: CircularProgressIndicator(),);
+                      }
+                      else{
+                        return const Center(child: CircularProgressIndicator(),);
 
-                  }
+                      }
 
-                },
-              ),
+                    },
+                  ),
+        ],
+      ),
             );
   }
 }

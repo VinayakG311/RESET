@@ -42,7 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         bottom: 0,
                           right: 3,
                           child: ClipOval(
-
                               child: Container(
                                 padding: const EdgeInsets.all(8),
                                 color: Colors.blue,
