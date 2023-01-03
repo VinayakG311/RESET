@@ -111,6 +111,7 @@ class ProfessionalModel{
   String? Priorexp;
   int? chat;
   int? call;
+  int? Earnings;
   ProfessionalModel({this.uid,this.firstname,this.email,this.phoneNumber,this.certificate,this.rating,this.image});
   ProfessionalModel.fromMap(Map<String,dynamic> map){
     uid = map['uid'];
@@ -128,6 +129,7 @@ class ProfessionalModel{
     chat=map["chat"];
     call=map["call"];
     yearsofexp=map["yearsofexp"];
+    Earnings=map["Earnings"];
 
   }
   Map<String,dynamic> toMap(){
@@ -147,6 +149,7 @@ class ProfessionalModel{
       "chat":chat,
       "yearsofexp":yearsofexp,
       "call":call,
+      "Earnings":Earnings,
     };
   }
 

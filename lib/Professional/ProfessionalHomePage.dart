@@ -20,7 +20,7 @@ import 'ProfessionalScreens/Appointments.dart';
 import 'ProfessionalScreens/CallRooms.dart';
 import 'ProfessionalScreens/ChatRooms.dart';
 import 'ProfessionalScreens/Community.dart';
-import 'ProfessionalScreens/EarningAndStats.dart';
+import 'ProfessionalScreens/Earnings Screen/EarningAndStats.dart';
 
 class ProfessionalHomePage extends StatefulWidget {
   static const id="Profeshome";
@@ -45,7 +45,7 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
       ChatRooms(firebaseUser: widget.firebaseuser,userModel: widget.userModel,),
       Appointments(),
       Community(type: 0,firebaseUser: widget.firebaseuser,model: widget.userModel!,),
-      EarningAndStats(),
+      EarningAndStats(firebaseUser: widget.firebaseuser,model: widget.userModel!,),
     ];
     return Scaffold(
 
