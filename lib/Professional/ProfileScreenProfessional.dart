@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reset/Professional/ProfessionalScreens/CreateProfileProf.dart';
 import 'package:reset/Professional/ProfessionalScreens/ProfileProf.dart';
+import 'package:reset/Professional/ProfessionalScreens/editProfileProf.dart';
 import 'package:reset/SelectUser.dart';
-
 import '../Models/Database.dart';
 import '../components/Widgets.dart';
-import 'ProfessionalProfileSetup.dart';
-import 'WelcomeProfessional.dart';
+
 
 class ProfessionalProfileScreen extends StatefulWidget {
   final ProfessionalModel? userModel;
@@ -85,7 +83,7 @@ class _ProfessionalProfileScreenState extends State<ProfessionalProfileScreen> {
                               }
                               else{
 
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>CreatePRof(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditProfilePRof(firebaseUser: widget.firebaseUser,userModel: widget.userModel,type: 0,)));
 
                               }
                             },

@@ -91,7 +91,7 @@ class _ProfileProfState extends State<ProfileProf> {
             InkWell(
               child: Text("Edit Profile"),
               onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditProfilePRof(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EditProfilePRof(firebaseUser: widget.firebaseUser,userModel: widget.userModel,type: 1,)));
               },
             )
           ],

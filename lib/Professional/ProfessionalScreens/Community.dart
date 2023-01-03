@@ -256,17 +256,8 @@ class _PostsCardState extends State<PostsCard> {
           child: Text(widget.posts.uploadedby!),
         ),
         InkWell(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-
-              Uri.parse(widget.posts.img!).isAbsolute==false?Image.file(File(widget.posts.img!),width: 390,):Image.network(widget.posts.img!,width: 390,),
-            ],
-          ),
-
+          child:Uri.parse(widget.posts.img!).isAbsolute==false?Image.file(File(widget.posts.img!),width: 390,):Image.network(widget.posts.img!,width: 390,),
          onDoubleTap: () async {
-
             setState(() {
               if(isLiked==true){
                 isLiked=false;
