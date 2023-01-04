@@ -42,11 +42,12 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   table_calendar: ^3.0.6
   animated_text_kit: ^4.2.1
-  firebase_core: ^1.16.0
+  firebase_core: ^2.4.1
   just_audio: ^0.9.30
   audioplayers: ^1.1.1
-  firebase_auth: ^3.3.17
-  cloud_firestore: ^3.1.14
+  firebase_auth: ^4.2.4
+  cloud_firestore: ^4.3.1
+  firebase_storage: ^11.0.10
   modal_progress_hud_nsn: ^0.1.0-nullsafety-0
   google_fonts: ^3.0.1
   cached_network_image: ^3.2.1

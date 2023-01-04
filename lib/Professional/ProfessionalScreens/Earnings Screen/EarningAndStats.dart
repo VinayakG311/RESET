@@ -12,6 +12,7 @@ class EarningAndStats extends StatefulWidget {
   final ProfessionalModel model;
   final User? firebaseUser;
 
+
   @override
   _EarningAndStatsState createState() => _EarningAndStatsState();
 }

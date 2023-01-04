@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:reset/components/RoundedButtons.dart';
 
 import '../../Models/Database.dart';
@@ -245,6 +246,7 @@ class PostsCard extends StatefulWidget {
 class _PostsCardState extends State<PostsCard> {
   bool isLiked=false;
   bool isbookmarked=false;
+
   @override
   Widget build(BuildContext context) {
 
@@ -256,7 +258,7 @@ class _PostsCardState extends State<PostsCard> {
           child: Text(widget.posts.uploadedby!),
         ),
         InkWell(
-          child:Uri.parse(widget.posts.img!).isAbsolute==false?Image.file(File(widget.posts.img!),width: 390,):Image.network(widget.posts.img!,width: 390,),
+          child:Image.network(widget.posts.img!,width: 390,),
          onDoubleTap: () async {
             setState(() {
               if(isLiked==true){
