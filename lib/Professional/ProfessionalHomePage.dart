@@ -4,22 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:ff_navigation_bar_lts/ff_navigation_bar_lts.dart';
 import 'package:reset/Models/Database.dart';
 import 'package:reset/Professional/ProfessionalScreens/PostStuff.dart';
-import 'package:reset/Professional/ProfileScreenProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/Profile%20Professional/ProfileScreenProfessional.dart';
 import 'package:reset/components/Widgets.dart';
 import 'package:reset/components/drawer.dart';
 import 'package:reset/flutter-icons-52b690ff/my_flutter_app_icons.dart';
-import 'package:reset/screens/Calender.dart';
-import 'package:reset/screens/HomePage.dart';
-import 'package:reset/screens/Profile%20screen.dart';
-import 'package:reset/screens/book.dart';
-import 'package:reset/screens/call.dart';
-import 'package:reset/screens/meditation.dart';
-
 import '../components/Themes.dart';
-import 'ProfessionalScreens/Appointments.dart';
-import 'ProfessionalScreens/CallRooms.dart';
-import 'ProfessionalScreens/ChatRooms.dart';
-import 'ProfessionalScreens/Community.dart';
+import 'ProfessionalScreens/Appointment Screen/Appointments.dart';
+import 'ProfessionalScreens/Call Screen/CallRooms.dart';
+import 'ProfessionalScreens/Chat Screen/ChatRooms.dart';
+import 'ProfessionalScreens/Community Screen/Community.dart';
 import 'ProfessionalScreens/Earnings Screen/EarningAndStats.dart';
 
 class ProfessionalHomePage extends StatefulWidget {

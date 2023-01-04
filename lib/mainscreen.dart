@@ -1,18 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reset/Professional/LoginProfessional.dart';
-import 'package:reset/Professional/RegisterProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/LoginProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/RegisterProfessional.dart';
 import 'package:reset/Professional/WelcomeProfessional.dart';
 import 'package:reset/SelectUser.dart';
 import 'package:reset/WelcomeScreen.dart';
 import 'package:reset/loginRegister/login_screen.dart';
 import 'package:reset/loginRegister/registration_screen.dart';
-import 'package:reset/screens/CreateProfile.dart';
-import 'package:reset/screens/ChatwithProffesional.dart';
-import 'package:reset/screens/Profile%20screen.dart';
-import 'package:reset/screens/call.dart';
-import 'package:reset/screens/chat%20screen/ProfessionalProfile.dart';
 import 'Models/Database.dart';
+import 'User/screens/ChatwithProffesional.dart';
+import 'User/screens/Profile Screen user/CreateProfile.dart';
+import 'User/screens/Profile Screen user/Profile screen.dart';
+import 'User/screens/call.dart';
+import 'User/screens/chat screen/ProfessionalProfile.dart';
 import 'pag1-method2.dart';
 
 

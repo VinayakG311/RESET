@@ -4,16 +4,16 @@ import 'package:reset/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/components/RoundedButtons.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../Models/Database.dart';
-import '../User/screens/Profile Screen user/CreateProfile.dart';
-class RegistrationScreen extends StatefulWidget {
+import '../../../Models/Database.dart';
+import '../Profile Professional/ProfessionalProfileSetup.dart';
+class RegisterProfessional extends StatefulWidget {
 
-  static const String id ="registration_screen";
+  static const String id ="registration_screen_professional";
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  _RegisterProfessionalState createState() => _RegisterProfessionalState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RegisterProfessionalState extends State<RegisterProfessional> {
   final _auth=FirebaseAuth.instance;
   bool showSpinner=false;
   late String email;
@@ -43,29 +43,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 height: 48.0,
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
-                textAlign: TextAlign.center,
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(color: Colors.black),
-                onChanged: (value) {
+                  onChanged: (value) {
                     email=value;
-                  //Do something with the user input.
-                },
-                decoration: kTextfieldDecoration.copyWith(hintText:"Enter your email")
+                    //Do something with the user input.
+                  },
+                  decoration: kTextfieldDecoration.copyWith(hintText:"Enter your email")
               ),
               const SizedBox(
                 height: 8.0,
               ),
 
               TextField(
-                obscureText: true,
-                textAlign: TextAlign.center,
-                cursorColor: Colors.black,
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  cursorColor: Colors.black,
                   style: const TextStyle(color: Colors.black),
-                onChanged: (value) {
-                  password=value;
-                  //Do something with the user input.
-                },
-                decoration: kTextfieldDecoration.copyWith(hintText: "Enter your password")
+                  onChanged: (value) {
+                    password=value;
+                    //Do something with the user input.
+                  },
+                  decoration: kTextfieldDecoration.copyWith(hintText: "Enter your password")
               ),
               const SizedBox(
                 height: 24.0,
@@ -77,22 +77,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 try {
                   final newuser = await _auth.createUserWithEmailAndPassword(
                       email: email, password: password);
+
                   String uid = newuser.user!.uid;
-                  UserModel user = UserModel(uid: uid,email: email,firstname: '');
-                  await FirebaseFirestore.instance.collection('users').doc(uid).set(
+                  ProfessionalModel user = ProfessionalModel(uid: uid,email: email,firstname: '');
+                  await FirebaseFirestore.instance.collection('Professional').doc(uid).set(
                       user.toMap()).then((value){
                     Navigator.popUntil(context, (route) => route.isFirst);
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ProfileSetup(firebaseUser:newuser.user ,userModel:user ,)));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ProfileSetupProfessional(firebaseUser:newuser.user ,userModel:user ,)));
                   });
                   setState(() {
                     showSpinner=false;
                   });
                 }
-
-              catch(e){
+                catch(e){
                   print(e);
-              }
-      },Colors.white),
+                }
+              },Colors.white),
             ],
           ),
         ),

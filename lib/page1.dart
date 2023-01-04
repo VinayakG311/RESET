@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:reset/components/drawer.dart';
-import 'package:reset/screens/Calender.dart';
-import 'package:reset/screens/HomePage.dart';
-import 'package:reset/screens/book.dart';
-import 'package:reset/screens/call.dart';
-import 'package:reset/screens/meditation.dart';
 
 import 'Models/Database.dart';
+import 'User/screens/Book Screen /book.dart';
+import 'User/screens/Calender Screen/Calender.dart';
+import 'User/screens/Home Screen/HomePage.dart';
+import 'User/screens/Meditation Screen/meditation.dart';
+import 'User/screens/call.dart';
 
 class MyHomePage2 extends StatefulWidget {
   final UserModel? userModel;

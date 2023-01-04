@@ -1,18 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:reset/Professional/LoginProfessional.dart';
-import 'package:reset/Professional/ProfessionalScreens/Community.dart';
-import 'package:reset/Professional/ProfileScreenProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/LoginProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/Community%20Screen/Community.dart';
+import 'package:reset/Professional/ProfessionalScreens/Profile%20Professional/ProfileScreenProfessional.dart';
 import 'package:reset/Professional/WelcomeProfessional.dart';
 import 'package:reset/SelectUser.dart';
 import 'package:reset/WelcomeScreen.dart';
 import 'package:reset/loginRegister/login_screen.dart';
 import 'package:reset/loginRegister/registration_screen.dart';
 import '../Models/Database.dart';
-import 'ChatWithUser.dart';
+import 'ProfessionalScreens/Chat Screen/ChatWithUser.dart';
 import 'ProfessionalHomePage.dart';
-import 'ProfessionalProfileSetup.dart';
-import 'RegisterProfessional.dart';
+import 'ProfessionalScreens/Profile Professional/ProfessionalProfileSetup.dart';
+import 'ProfessionalScreens/LoginRegisterProfessional/RegisterProfessional.dart';
 
 
 class ProfessionalMyApp extends StatelessWidget {

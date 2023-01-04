@@ -1,5 +1,5 @@
-import 'package:reset/Professional/LoginProfessional.dart';
-import 'package:reset/Professional/RegisterProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/LoginProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/RegisterProfessional.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/components/RoundedButtons.dart';
 

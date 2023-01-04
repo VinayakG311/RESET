@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:reset/Professional/LoginProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/LoginProfessional.dart';
 import 'package:reset/Professional/ProfessionalMyApp.dart';
-import 'package:reset/Professional/RegisterProfessional.dart';
+import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional/RegisterProfessional.dart';
 import 'package:reset/Professional/WelcomeProfessional.dart';
 import 'package:reset/SelectUser.dart';
 import 'package:reset/WelcomeScreen.dart';

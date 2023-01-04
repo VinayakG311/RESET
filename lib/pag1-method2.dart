@@ -5,13 +5,14 @@ import 'package:reset/Models/Database.dart';
 import 'package:reset/components/Widgets.dart';
 import 'package:reset/components/drawer.dart';
 import 'package:reset/flutter-icons-52b690ff/my_flutter_app_icons.dart';
-import 'package:reset/screens/Calender.dart';
-import 'package:reset/screens/HomePage.dart';
-import 'package:reset/screens/Profile%20screen.dart';
-import 'package:reset/screens/book.dart';
-import 'package:reset/screens/call.dart';
-import 'package:reset/screens/chat%20screen/Meet%20the%20Professional.dart';
-import 'package:reset/screens/meditation.dart';
+
+import 'User/screens/Book Screen /book.dart';
+import 'User/screens/Calender Screen/Calender.dart';
+import 'User/screens/Home Screen/HomePage.dart';
+import 'User/screens/Meditation Screen/meditation.dart';
+import 'User/screens/Profile Screen user/Profile screen.dart';
+import 'User/screens/chat screen/Meet the Professional.dart';
+
 
 class MyHomePage extends StatefulWidget {
   final UserModel? userModel;
