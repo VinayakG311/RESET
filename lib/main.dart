@@ -7,12 +7,12 @@ import 'package:reset/Professional/ProfessionalScreens/LoginRegisterProfessional
 import 'package:reset/Professional/WelcomeProfessional.dart';
 import 'package:reset/SelectUser.dart';
 import 'package:reset/WelcomeScreen.dart';
-import 'package:reset/chat_screen.dart';
 import 'package:reset/loginRegister/login_screen.dart';
 import 'package:reset/loginRegister/registration_screen.dart';
 import 'components/Helpers.dart';
 import 'mainscreen.dart';
 import 'package:reset/Models/Database.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

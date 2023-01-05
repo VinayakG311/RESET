@@ -36,7 +36,7 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
     final screens=[
       CallRooms(),
       ChatRooms(firebaseUser: widget.firebaseuser,userModel: widget.userModel,),
-      Appointments(),
+      Appointments(firebaseUser: widget.firebaseuser,model: widget.userModel),
       Community(type: 0,firebaseUser: widget.firebaseuser,model: widget.userModel!,),
       EarningAndStats(firebaseUser: widget.firebaseuser,model: widget.userModel!,),
     ];

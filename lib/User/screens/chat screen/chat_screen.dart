@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:uuid/uuid.dart';
-import 'Models/Database.dart';
-import 'components/Widgets.dart';
+import '../../../Models/Database.dart';
+import '../../../components/Widgets.dart';
 var uuid = new Uuid();
 //
 // final _firestore=FirebaseFirestore.instance;

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/Models/Database.dart';
 import 'package:uuid/uuid.dart';
-import '../../chat_screen.dart';
+import 'chat screen/chat_screen.dart';
 import 'Profile Screen user/Profile screen.dart';
 var uuid  = new Uuid();
 
