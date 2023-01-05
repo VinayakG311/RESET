@@ -29,10 +29,10 @@ class _AppointmentsState extends State<Appointments> {
   List<String> list1 = <String>['Chat', 'Call'];
   String dropdownValue = 'Chat';
   int selected=0;
+  DateTime _datetime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     List<Widget> list = [Call(firebaseUser: widget.firebaseUser,model: widget.model,),Chat(firebaseUser: widget.firebaseUser,model: widget.model,)];
-    controller.text="";
     return Column(
       children: [
         Padding(
@@ -108,7 +108,7 @@ class _AppointmentsState extends State<Appointments> {
         ),
         OutlinedButton(
             onPressed: (){
-              timepicker(context, time, controller,list1,dropdownValue,selected);
+              timepicker(context, time, controller,list1,dropdownValue,selected,_datetime);
            //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddAppointment(model: widget.model,firebaseUser: widget.firebaseUser,)));
             }
               , child: Text("Add Appointment")),
@@ -117,7 +117,7 @@ class _AppointmentsState extends State<Appointments> {
     );
   }
 
-  timepicker(BuildContext context, String time, TextEditingController controller,List<String> list1,String dropdownValue,int selected) async {
+  timepicker(BuildContext context, String time, TextEditingController controller,List<String> list1,String dropdownValue,int selected,DateTime _dateTime) async {
     showModalBottomSheet(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -154,7 +154,7 @@ class _AppointmentsState extends State<Appointments> {
                               }
                               setState(() {
                                 time=newtime;
-                                controller.text=time;
+
                                 t=true;
                               });
 
@@ -164,27 +164,52 @@ class _AppointmentsState extends State<Appointments> {
                               });
                             }
                           }, child: Text("Select slot")),
-                          Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Row(
-                              children: [
-                                Text("time: ",style: TextStyle(fontSize: 20),),
-                                Text(time,style: TextStyle(fontSize: 20),),
-                                Text(((){
-                                  if(t){
-                                  if(ispm==true){
-                                    return "pm";
-                                  }
-                                  else{
-                                    return "am";
-                                  }
-                                  }
-                                  else{
-                                    return "";
-                                  }
-                                })(),style: TextStyle(fontSize: 20),)
-                              ],
-                            ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: Row(
+                                  children: [
+                                    Text("time: ",style: TextStyle(fontSize: 20),),
+                                    Text(time,style: TextStyle(fontSize: 20),),
+                                    Text(((){
+                                      if(t){
+                                      if(ispm==true){
+                                        return "pm";
+                                      }
+                                      else{
+                                        return "am";
+                                      }
+                                      }
+                                      else{
+                                        return "";
+                                      }
+                                    })(),style: TextStyle(fontSize: 20),)
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ElevatedButton(
+                                  child: const Text('Pick a date'),
+                                  onPressed: () {
+                                    showDatePicker(
+                                        context: context,
+                                        initialDate: _dateTime ,
+                                        firstDate: DateTime(1990),
+                                        lastDate: DateTime(2024)
+                                    ).then((date) {
+                                      if(date!=null){
+                                        setState(() {
+                                          _dateTime = date;
+                                       //   DOB="${_dateTime.day}-${_dateTime.month}-${_dateTime.year}";
+                                          controller.text = "${_dateTime.day}-${_dateTime.month}-${_dateTime.year}";
+                                        });}
+                                    });
+                                  },
+                                ),
+                              )
+                            ],
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -205,9 +230,44 @@ class _AppointmentsState extends State<Appointments> {
                               },),
                           ),
                           OutlinedButton(onPressed: () async{
-                      Appointment appointment = Appointment(new Uuid().v1(), '',widget.model?.email!,time,"15-11-2022",dropdownValue);
-                      await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection(appointment.Day.toString()).doc(appointment.uid).set(appointment.toMap());
-                      Navigator.pop(context);
+                            print(controller.text);
+                          Appointment appointment = Appointment(new Uuid().v1(), '',widget.model?.email!,time,controller.text,dropdownValue);
+
+                          Dates? dates=null;
+                          var snap = await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("Dates").where("Date",isEqualTo: appointment.Day).get().then((value) {
+                            if(value.docs.length==0){
+                              if(appointment.type=="Call"){
+                                dates = Dates(appointment.Day, 1, 0,new Uuid().v1());
+                              }
+                              else{
+                                dates = Dates(appointment.Day, 0, 1,new Uuid().v1());
+                              }
+
+                            //  print("hi");
+                            }
+                            else{
+                              dates = Dates.fromMap(value.docs[0].data());
+                              if(appointment.type=="Call"){
+                                dates?.number1=1;
+                              }
+                              else{
+                                dates?.number2=1;
+                              }
+                            }
+                          });
+                          if(dates!=null) {
+                            Dates d = dates!;
+                            await FirebaseFirestore.instance.collection(
+                                "Professional").doc(widget.model?.uid)
+                                .collection("Dates").doc(dates?.uid)
+                                .set(d.toMap());
+                            await FirebaseFirestore.instance.collection(
+                                "Professional").doc(widget.model?.uid)
+                                .collection(appointment.Day.toString()).doc(
+                                appointment.uid)
+                                .set(appointment.toMap());
+                            Navigator.pop(context);
+                         }
                   }, child: Text("add appointment"))
                           // showTimePicker(context: context, initialTime: initialTime)
                         ],
@@ -408,7 +468,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
       children: [
         ((){
           if(widget.Val=="Call"){
-            if(widget.data["number"]!=0){
+            if(widget.data["number1"]!=0){
               return Text(widget.data["Date"]);
             }
             else{

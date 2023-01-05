@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reset/User/screens/chat%20screen/ProfessionalProfile.dart';
+import 'package:reset/User/screens/chat%20screen/chat_endscreen.dart';
 import 'package:reset/components/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -50,6 +52,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
         leading: Align(
           alignment: Alignment.centerRight,
           child: IconBackground(
@@ -62,12 +66,38 @@ class _ChatScreenState extends State<ChatScreen> {
         title: InkWell(
           //splashColor: Colors.blue,
           onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ProfessionalProfile(model: widget.targetUser,userModel: widget.userModel,firebaseUser: widget.firebaseUser,)));
           },
           child: Row(
             children: [
-              const CircleAvatar(child: Icon(Icons.person),),
+              Avatar.medium(url: widget.targetUser?.image.toString(),),
               const SizedBox(width: 10,),
-              Text(widget.targetUser?.firstname.toString()??'no name',style: const TextStyle(color: Colors.black),),
+              Text(widget.targetUser?.firstname.toString()??'User',style: const TextStyle(color: Colors.black),),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: SizedBox(
+                  width: 100,
+                    height: 60,
+                    child: RoundedButton(Colors.black, "End call", () {
+                      showDialog(context: context, builder: (context){
+                        return AlertDialog(
+                          title:  const Text('End Call?',style: TextStyle(fontSize: 25),),
+                          content: const Text('Do you want to End Call?',style: TextStyle(fontSize: 15),),
+                          actions: <Widget>[
+                            TextButton(onPressed: (){
+                              Navigator.pop(context, 'OK');
+                              Navigator.of(context).push(MaterialPageRoute(builder: (context)=>chatendscreen(firebaseUser: widget.firebaseUser,userModel: widget.userModel,targetUser: widget.targetUser,)));
+
+                            }, child: Text("OK")),
+                            TextButton(onPressed: (){
+                              Navigator.pop(context, 'Cancel');
+                            }, child: Text("Cancel")),
+
+                          ],
+                        );
+                      });
+                    }, Colors.white)),
+              ),
             ],
           ),
         ),
@@ -76,6 +106,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Container(
           child: Column(
             children: [
+              Divider(height: 8,),
               Expanded(
                 child: Container(
                   child: StreamBuilder(

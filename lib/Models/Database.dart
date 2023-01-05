@@ -317,3 +317,26 @@ class Appointment{
     type=map["type"];
   }
 }
+
+
+class Dates{
+  String? uid;
+  String? Date;
+  int? number1;
+  int? number2;
+  Dates(this.Date, this.number1, this.number2,this.uid);
+  Dates.fromMap(Map<String,dynamic> map){
+    uid=map["uid"];
+    Date=map["Date"];
+    number1=map["number1"];
+    number2=map["number2"];
+  }
+  Map<String,dynamic> toMap(){
+    return {
+      "uid":uid,
+      "number1":number1,
+      "number2":number2,
+      "Date":Date,
+    };
+  }
+}
