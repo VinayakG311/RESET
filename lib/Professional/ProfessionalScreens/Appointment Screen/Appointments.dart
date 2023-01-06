@@ -231,7 +231,7 @@ class _AppointmentsState extends State<Appointments> {
                           ),
                           OutlinedButton(onPressed: () async{
                             print(controller.text);
-                          Appointment appointment = Appointment(new Uuid().v1(), '',widget.model?.email!,time,controller.text,dropdownValue);
+                          Appointment appointment = Appointment(new Uuid().v1(), '',widget.model?.email!,time,controller.text,dropdownValue,false);
 
                           Dates? dates=null;
                           var snap = await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("Dates").where("Date",isEqualTo: appointment.Day).get().then((value) {

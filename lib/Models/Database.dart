@@ -296,8 +296,9 @@ class Appointment{
   String? Doctor;
   String? Timing;
   String? Day;
+  bool? isbooked;
 
-  Appointment(this.uid, this.Patient, this.Doctor, this.Timing,this.Day,this.type);
+  Appointment(this.uid, this.Patient, this.Doctor, this.Timing,this.Day,this.type,this.isbooked);
   Map<String,dynamic> toMap(){
     return{
       "uid":uid,
@@ -306,6 +307,7 @@ class Appointment{
       "Timing":Timing,
       "Day":Day,
       "type":type,
+      "isbooked":isbooked,
     };
   }
   Appointment.fromMap(Map<String,dynamic> map){
@@ -315,6 +317,7 @@ class Appointment{
     Timing=map["Timing"];
     Day=map["Day"];
     type=map["type"];
+    isbooked=map["isbooked"];
   }
 }
 

@@ -29,26 +29,20 @@ class hamburger extends StatelessWidget {
                     Navigator.pop(context);
                   },
                 ),
-               ListTile(
-                  title: const Text('Information',style: TextStyle(fontSize:30,color: Colors.grey),),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-               ListTile(
-                  title: const Text('About Us',style: TextStyle(fontSize:30,color: Colors.grey),),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-               ListTile(
-                  title: const Text('Contact us',style: TextStyle(fontSize:30,color: Colors.grey),),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
+              ListTile(
+                title: const Text('Report Issue',style: TextStyle(fontSize:30,color: Colors.grey),),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
               ListTile(
                 title: const Text('Report Abuse',style: TextStyle(fontSize:30,color: Colors.grey),),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Log Out',style: TextStyle(fontSize:30,color: Colors.grey),),
                 onTap: () {
                   Navigator.pop(context);
                 },

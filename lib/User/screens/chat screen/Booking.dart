@@ -393,15 +393,17 @@ class _cardState extends State<card> {
       child: Row(
           children: <Widget>[
             for(int i=0;i<widget.appointment.length;i++)
-              InkWell(
+              TextButton(
+                //widget.appointment[i].isbooked==false?TextButton.styleFrom(foregroundColor: Colors.white):TextButton.styleFrom(foregroundColor: Colors.black),
                 child: SizedBox(
                   height: 40,
                   width: 100,
                   child: Card(
+                    color: widget.appointment[i].isbooked==false?Colors.white:Colors.grey,
                     shape: RoundedRectangleBorder(side: const BorderSide(color: Colors.black),borderRadius: BorderRadius.circular(15)),
                       child: Center(child: Text(widget.appointment[i].Timing!))),
                 ),
-                onTap: (){
+                onPressed: widget.appointment[i].isbooked==true?null:(){
                   showDialog<String>(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
@@ -412,6 +414,9 @@ class _cardState extends State<card> {
                           onPressed: () async  {
                             Appointment newAppoint = widget.appointment[i];
                             newAppoint.Patient = widget.userModel?.email;
+                            newAppoint.isbooked=true;
+                            //print(newAppoint.Patient);
+                          //  await FirebaseFirestore.instance.collection("collectionPath")
                             await FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
                             await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
 
