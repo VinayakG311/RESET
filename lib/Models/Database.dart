@@ -267,14 +267,16 @@ class TaskModel{
   String? uid;
   String? description;
   String? title;
+  String? Date;
   int? dura;
   int? durb;
-  TaskModel(this.uid, this.description, this.title, this.dura, this.durb);
+  TaskModel(this.uid, this.description, this.title, this.dura, this.durb,this.Date);
   TaskModel.fromMap(Map<String,dynamic> map){
     uid=map["uid"];
     description=map["description"];
     title=map["title"];
     dura=map["dura"];
+    Date=map["Date"];
     durb=map["durb"];
   }
   Map<String,dynamic> toMap(){
@@ -283,7 +285,8 @@ class TaskModel{
       "description":description,
       "title":title,
       "dura":dura,
-      "durb":durb
+      "durb":durb,
+      "Date":Date,
     };
   }
 }
@@ -297,8 +300,9 @@ class Appointment{
   String? Timing;
   String? Day;
   bool? isbooked;
+  int? charges;
 
-  Appointment(this.uid, this.Patient, this.Doctor, this.Timing,this.Day,this.type,this.isbooked);
+  Appointment(this.uid, this.Patient, this.Doctor, this.Timing,this.Day,this.type,this.isbooked,this.charges);
   Map<String,dynamic> toMap(){
     return{
       "uid":uid,
@@ -308,6 +312,7 @@ class Appointment{
       "Day":Day,
       "type":type,
       "isbooked":isbooked,
+      "charges":charges,
     };
   }
   Appointment.fromMap(Map<String,dynamic> map){
@@ -318,6 +323,7 @@ class Appointment{
     Day=map["Day"];
     type=map["type"];
     isbooked=map["isbooked"];
+    charges=map["charges"];
   }
 }
 

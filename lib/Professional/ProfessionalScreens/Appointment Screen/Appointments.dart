@@ -230,9 +230,9 @@ class _AppointmentsState extends State<Appointments> {
                               },),
                           ),
                           OutlinedButton(onPressed: () async{
-                            print(controller.text);
-                          Appointment appointment = Appointment(new Uuid().v1(), '',widget.model?.email!,time,controller.text,dropdownValue,false);
+                     //       print(controller.text);
 
+                          Appointment appointment = Appointment(new Uuid().v1(), '',widget.model?.email!,time,controller.text,dropdownValue,false,dropdownValue=="Call"?widget.model?.call:widget.model?.chat);
                           Dates? dates=null;
                           var snap = await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("Dates").where("Date",isEqualTo: appointment.Day).get().then((value) {
                             if(value.docs.length==0){
@@ -242,7 +242,6 @@ class _AppointmentsState extends State<Appointments> {
                               else{
                                 dates = Dates(appointment.Day, 0, 1,new Uuid().v1());
                               }
-
                             //  print("hi");
                             }
                             else{

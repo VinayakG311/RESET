@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: screens[selected],
-      drawer: const hamburger(),
+      drawer:hamburger(userModel: widget.userModel,firebaseuser: widget.firebaseuser,),
       bottomNavigationBar:FFNavigationBar(
         theme: FFNavigationBarTheme(
           barBackgroundColor: const Color(0xFFF9A826),

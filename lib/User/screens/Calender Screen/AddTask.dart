@@ -152,7 +152,7 @@ class _AddTaskState extends State<AddTask> {
                         );
                 //  if(y){
                         int m = b.toInt();
-                        TaskModel taskmodel = TaskModel(const Uuid().v1(), controller1.text, controller3.text, a, m);
+                        TaskModel taskmodel = TaskModel(const Uuid().v1(), controller1.text, controller3.text, a, m,widget.day.toString().split(" ")[0]);
                         FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("tasks").doc(taskmodel.uid).set(taskmodel.toMap());
                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MyHomePage(title:"RESET",userModel: widget.userModel,firebaseuser: widget.firebaseuser,)));
                 //  }

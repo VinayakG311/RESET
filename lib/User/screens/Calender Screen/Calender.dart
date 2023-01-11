@@ -49,6 +49,7 @@ class _CalenderState extends State<Calender> {
                             _selectedDay = selectedDay;
                             _focusedDay = focusedDay; // update `_focusedDay` here as well
                           });
+
                         },
 
                       ),
@@ -81,7 +82,7 @@ class _CalenderState extends State<Calender> {
                     style: OutlinedButton.styleFrom(
                         shape: const StadiumBorder(),
                         side: const BorderSide(color: Colors.black,width: 2)
-                    ),onPressed: (){}, child: const Text("Analysis",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),)),
+                    ),onPressed: (){}, child: const Text("Check All Tasks",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),)),
               ),],
             ),
                 const Divider(),
@@ -90,7 +91,7 @@ class _CalenderState extends State<Calender> {
                   child: Text("Tasks",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
                 ),
                 StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("tasks").snapshots(),
+                  stream: FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("tasks").where("Date",isEqualTo: _focusedDay.toString().split(" ")[0].toString()).snapshots(),
                     builder:(BuildContext context, AsyncSnapshot<dynamic> snapshot){
                     if(snapshot.connectionState==ConnectionState.active){
                       if(snapshot.hasData){
