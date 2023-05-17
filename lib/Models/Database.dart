@@ -271,6 +271,7 @@ class TaskModel{
   int? dura;
   int? durb;
   TaskModel(this.uid, this.description, this.title, this.dura, this.durb,this.Date);
+
   TaskModel.fromMap(Map<String,dynamic> map){
     uid=map["uid"];
     description=map["description"];

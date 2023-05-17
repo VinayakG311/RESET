@@ -56,7 +56,7 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
       ),
         body:screens[selected],
        // screens[selected]!=AddPost() ? screens[selected]:Appointments(),
-      drawer: const hamburger(),
+     // drawer: const hamburgerprof(),
    bottomNavigationBar: FFNavigationBar(
         theme: FFNavigationBarTheme(
           barBackgroundColor: const Color(0xFFF9A826),

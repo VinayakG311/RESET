@@ -55,6 +55,7 @@ class _JournalaskState extends State<Journalask> {
                     },
                 Colors.white),
             RoundedButton(Colors.black, "Check saved Journals", (){
+              print(widget.userModel);
               Navigator.of(context).push(MaterialPageRoute(builder: (context)=> JournalsStored(userModel: widget.userModel,firebaseUser: widget.firebaseUser)));
 
             }, Colors.white),

@@ -399,7 +399,7 @@ class _cardState extends State<card> {
                   height: 40,
                   width: 100,
                   child: Card(
-                    color: widget.appointment[i].isbooked==false?Colors.white:Colors.grey,
+                    color: widget.appointment[i].isbooked==true?Colors.white:Colors.grey,
                     shape: RoundedRectangleBorder(side: const BorderSide(color: Colors.black),borderRadius: BorderRadius.circular(15)),
                       child: Center(child: Text(widget.appointment[i].Timing!))),
                 ),
@@ -415,10 +415,13 @@ class _cardState extends State<card> {
                             Appointment newAppoint = widget.appointment[i];
                             newAppoint.Patient = widget.userModel?.email;
                             newAppoint.isbooked=true;
+                            print(newAppoint.uid);
                             //print(newAppoint.Patient);
                           //  await FirebaseFirestore.instance.collection("collectionPath")
                             await FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
                             await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
+
+                            await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection(newAppoint.Day!).doc(newAppoint.uid).set(newAppoint.toMap());
 
                             Navigator.pop(context, 'OK');
                             Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ConfirmBooking(userModel: widget.userModel,firebaseUser: widget.firebaseUser,model: widget.model,appointment: widget.appointment[i],)));

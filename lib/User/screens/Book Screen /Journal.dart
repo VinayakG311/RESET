@@ -44,72 +44,74 @@ class _JournalState extends State<Journal> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body:  Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-            children:[
-              Row(
-                children: [
-                  Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: Image.asset("images/booksgirlsad.png",width: 150,),
-                ),
-                  Expanded(
+      body:  SingleChildScrollView(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+              children:[
+                Row(
+                  children: [
+                    Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Image.asset("images/booksgirlsad.png",width: 150,),
+                  ),
+                    Expanded(
 
-                    child: Text((() {
-                      if(widget.val==0){
-                        return "That's great! tell me about it";}
-                      if(widget.val==1){
-                        return "that's nice! did something good happen?";
-                      }
-                      if(widget.val==2){
-                        return "its okay! tell me about it";}
-                      if(widget.val==3){
-                        return "what has caused you to feel bad today";
-                      }
-                      if(widget.val==4){
-                        return "Dont feel down! try to write about it";}
-                      if(widget.val==5){
-                        return "its okay! just write how you feeling";
-                      }
-                      return "How are you feeling";
-                    })(),style: const TextStyle(color: Colors.black,fontSize: 24)),
-                  )
+                      child: Text((() {
+                        if(widget.val==0){
+                          return "That's great! tell me about it";}
+                        if(widget.val==1){
+                          return "that's nice! did something good happen?";
+                        }
+                        if(widget.val==2){
+                          return "its okay! tell me about it";}
+                        if(widget.val==3){
+                          return "what has caused you to feel bad today";
+                        }
+                        if(widget.val==4){
+                          return "Dont feel down! try to write about it";}
+                        if(widget.val==5){
+                          return "its okay! just write how you feeling";
+                        }
+                        return "How are you feeling";
+                      })(),style: const TextStyle(color: Colors.black,fontSize: 24)),
+                    )
 
-               ],),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 400,
-                  width: 400,
+                 ],),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: SizedBox(
+                    height: 400,
+                    width: 400,
 
-                  child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
-                    color: Color(0xFFFFE985),
-                    child: TextField(
-                      controller: controller,
-                      maxLines: null,
-                      onChanged: (val){
-                        text=val;
-                      },
+                    child: Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(25))),
+                      color: Color(0xFFFFE985),
+                      child: TextField(
+                        controller: controller,
+                        maxLines: null,
+                        onChanged: (val){
+                          text=val;
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 315.0),
-                child: InkWell(
-                    child: Icon(Icons.arrow_forward,size: 50,color: Colors.grey,),
-                onTap: () async {
-                      JournalModel journal= new JournalModel(Useruid: widget.userModel?.uid,Date: DateTime.now().toString(),Content: text,uid: new Uuid().v1());
-                 //     print(text);
-                  await FirebaseFirestore.instance.collection("Journals").doc(journal.Useruid).collection("journals").doc(journal.uid).set(journal.toMap()).then((value) => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JournalConfirm(firebaseUser: widget.firebaseUser,userModel: widget.userModel,))));
+                Padding(
+                  padding: const EdgeInsets.only(left: 315.0),
+                  child: InkWell(
+                      child: Icon(Icons.arrow_forward,size: 50,color: Colors.grey,),
+                  onTap: () async {
+                        JournalModel journal= new JournalModel(Useruid: widget.userModel?.uid,Date: DateTime.now().toString(),Content: text,uid: new Uuid().v1());
+                   //     print(text);
+                    await FirebaseFirestore.instance.collection("Journals").doc(journal.Useruid).collection("journals").doc(journal.uid).set(journal.toMap()).then((value) => Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JournalConfirm(firebaseUser: widget.firebaseUser,userModel: widget.userModel,))));
 
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JournalConfirm(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
-                },),
-              )
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JournalConfirm(firebaseUser: widget.firebaseUser,userModel: widget.userModel,)));
+                  },),
+                )
 
-            ]
-        )
+              ]
+          ),
+      )
 
     );
   }

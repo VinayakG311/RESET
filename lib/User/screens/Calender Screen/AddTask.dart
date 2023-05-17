@@ -8,10 +8,12 @@ import '../../../pag1-method2.dart';
 import '../Profile Screen user/Profile screen.dart';
 
 class AddTask extends StatefulWidget {
-  const AddTask({Key? key, this.userModel, this.firebaseuser, required this.day}) : super(key: key);
+  const AddTask({Key? key, this.userModel, this.firebaseuser, required this.day, this.taskModel, required this.sentdata}) : super(key: key);
   final UserModel? userModel;
   final User? firebaseuser;
   final DateTime day;
+  final TaskModel? taskModel;
+  final bool sentdata;
   @override
   State<AddTask> createState() => _AddTaskState();
 }
@@ -20,11 +22,21 @@ class _AddTaskState extends State<AddTask> {
   TextEditingController controller1= TextEditingController();
   TextEditingController controller2= TextEditingController();
   TextEditingController controller3= TextEditingController();
+  late TaskModel model;
   int a=0;
   double b=0;
   bool y=false;
   @override
   Widget build(BuildContext context) {
+   // if(widget.taskModel!=null){
+
+    if(widget.sentdata==true){
+      model = widget.taskModel!;
+      controller3.text=model.title!;
+      controller1.text=model.description!;
+      controller2.text=(model.durb!.toInt()*60+model.dura!.toInt()).toString();
+    }
+ //   }
     return Scaffold(
         appBar:  AppBar(
           actions: [
@@ -124,12 +136,12 @@ class _AddTaskState extends State<AddTask> {
             children: [
               Image.asset("images/timer.png"),
               Padding(
-                padding: const EdgeInsets.only(top: 130.0),
-                child: Center(child: Text(b.toString().split(".")[0]+":"+a.toString()
+                padding: const EdgeInsets.only(top: 150.0),
+                child: Center(child: Text(widget.sentdata==true?model.durb!.toString()+":"+model.dura!.toString():b.toString().split(".")[0]+":"+a.toString()
                   ,style: const TextStyle(fontSize: 50),)),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 290.0,left: 95),
+                padding: const EdgeInsets.only(top: 320.0,left: 115),
                 child: RoundedButton(Colors.black, "Create",
                         () { showDialog<String>(
                           context: context,

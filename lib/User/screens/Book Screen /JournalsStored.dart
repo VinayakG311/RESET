@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reset/User/screens/Book%20Screen%20/Journal%20Page.dart';
 import '../../../Models/Database.dart';
 import '../../../components/Widgets.dart';
 import '../../../pag1-method2.dart';
@@ -54,7 +55,12 @@ class _JournalsStoredState extends State<JournalsStored> {
                               itemCount: datasnapshot.docs.length,
                                 itemBuilder: (context,index){
                                 JournalModel journal = JournalModel.fromMap(datasnapshot.docs[index].data() as Map<String,dynamic>);
-                                return indJournal(Content: journal.Content,Date: journal.Date,);
+                                return InkWell(
+                                    child: indJournal(Content: journal.Content,Date: journal.Date,),
+                                  onTap: (){
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>JournalPage(journal: journal)));
+                                  },
+                                );
                                 });
                           }
                           else{

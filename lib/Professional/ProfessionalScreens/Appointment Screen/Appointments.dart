@@ -106,12 +106,24 @@ class _AppointmentsState extends State<Appointments> {
             ],
           ),
         ),
-        OutlinedButton(
-            onPressed: (){
-              timepicker(context, time, controller,list1,dropdownValue,selected,_datetime);
-           //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddAppointment(model: widget.model,firebaseUser: widget.firebaseUser,)));
-            }
-              , child: Text("Add Appointment")),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            OutlinedButton(
+                onPressed: (){
+                  timepicker(context, time, controller,list1,dropdownValue,selected,_datetime);
+               //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddAppointment(model: widget.model,firebaseUser: widget.firebaseUser,)));
+                }
+                  , child: Text("Add Appointment")),
+            OutlinedButton(
+                onPressed: (){
+
+                  //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddAppointment(model: widget.model,firebaseUser: widget.firebaseUser,)));
+                }
+                , child: Text("Check Bookings")),
+          ],
+        ),
+
         SingleChildScrollView(child: list[val]),
       ],
     );

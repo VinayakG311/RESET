@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:reset/User/screens/Calender%20Screen/Tasks.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../../Models/Database.dart';
 import 'AddTask.dart';
@@ -70,20 +71,11 @@ class _CalenderState extends State<Calender> {
                 child: TextButton(style: OutlinedButton.styleFrom(shape: const StadiumBorder(),backgroundColor: (Colors.black),
                 ),
                     onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddTask(userModel: widget.userModel,firebaseuser: widget.firebaseuser,day:_focusedDay,)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddTask(userModel: widget.userModel,firebaseuser: widget.firebaseuser,day:_focusedDay,sentdata: false,)));
                     },
                     child: const Text("Add Task",style: TextStyle(color: Colors.white),)),
               ),
-                const Padding(padding: EdgeInsets.all(25)),
-                SizedBox(
-                width: 120,
-                height: 50,
-                child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        side: const BorderSide(color: Colors.black,width: 2)
-                    ),onPressed: (){}, child: const Text("Check All Tasks",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),)),
-              ),],
+                const Padding(padding: EdgeInsets.all(25))],
             ),
                 const Divider(),
                 const Padding(
@@ -102,7 +94,11 @@ class _CalenderState extends State<Calender> {
                             itemCount: datasnapshot.docs.length,
                             itemBuilder: (context,index){
                               TaskModel model = TaskModel.fromMap(datasnapshot.docs[index].data() as Map<String,dynamic>);
-                              return Task(model: model,userModel: widget.userModel,firebaseuser: widget.firebaseuser,);
+                              return InkWell(
+                                onTap: (){
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Tasks(taskModel: model,userModel: widget.userModel,firebaseuser: widget.firebaseuser,)));
+                                },
+                                  child: Task(model: model,userModel: widget.userModel,firebaseuser: widget.firebaseuser,));
                             }
 
 
