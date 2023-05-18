@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 
 import '../../../Models/Database.dart';
 
-class AllBooking extends StatefulWidget {
-  const AllBooking({Key? key, this.userModel, this.firebaseuser}) : super(key: key);
-  final UserModel? userModel;
+class AllBookingprof extends StatefulWidget {
+  const AllBookingprof({Key? key, this.userModel, this.firebaseuser}) : super(key: key);
+  final ProfessionalModel? userModel;
   final User? firebaseuser;
 
   @override
-  State<AllBooking> createState() => _AllBookingState();
+  State<AllBookingprof> createState() => _AllBookingState();
 }
 
-class _AllBookingState extends State<AllBooking> {
+class _AllBookingState extends State<AllBookingprof> {
   DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _AllBookingState extends State<AllBooking> {
                 child: Text("All Bookings",style: TextStyle(fontSize: 25),),
               ),
               StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("appointments").snapshots(),
+                  stream: FirebaseFirestore.instance.collection("Professional").doc(widget.userModel?.uid).collection("appointments").snapshots(),
                   builder: (context,snapshot){
                     if(snapshot.connectionState==ConnectionState.active){
                       if(snapshot.hasData){
@@ -56,7 +56,7 @@ class _AllBookingState extends State<AllBooking> {
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(appointment.Doctor.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                                              Text(appointment.Patient.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
                                               SizedBox(height: 5,),
                                               Row(
                                                 //     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -86,7 +86,7 @@ class _AllBookingState extends State<AllBooking> {
                                                   ),
 
                                                   InkWell(
-                                                    child: Text("Report Professional ",style: TextStyle(color: Colors.red),),
+                                                    child: Text("Report Patient ",style: TextStyle(color: Colors.red),),
                                                     onTap: (){},
                                                   ),
                                                   // Text(appointment.)

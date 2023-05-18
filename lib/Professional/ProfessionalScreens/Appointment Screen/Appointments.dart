@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:reset/Professional/ProfessionalScreens/Appointment%20Screen/AddAppointment.dart';
+import 'package:reset/Professional/ProfessionalScreens/Appointment%20Screen/professionalAllBookings.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../Models/Database.dart';
@@ -118,7 +119,7 @@ class _AppointmentsState extends State<Appointments> {
             OutlinedButton(
                 onPressed: (){
 
-                  //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AddAppointment(model: widget.model,firebaseUser: widget.firebaseUser,)));
+                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>AllBookingprof(userModel: widget.model,firebaseuser: widget.firebaseUser,)));
                 }
                 , child: Text("Check Bookings")),
           ],
