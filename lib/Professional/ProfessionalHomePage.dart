@@ -34,7 +34,7 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
       widget.pageIndex.value = index;
     }
     final screens=[
-      CallRooms(),
+
       ChatRooms(firebaseUser: widget.firebaseuser,userModel: widget.userModel,),
       Appointments(firebaseUser: widget.firebaseuser,model: widget.userModel),
       Community(type: 0,firebaseUser: widget.firebaseuser,model: widget.userModel!,),
@@ -67,7 +67,7 @@ class _ProfessionalHomePageState extends State<ProfessionalHomePage> {
           unselectedItemIconColor: Colors.black,
         ),
         items:  [
-          FFNavigationBarItem(iconData:(Icons.call),label: "",),
+         // FFNavigationBarItem(iconData:(Icons.call),label: "",),
           FFNavigationBarItem(iconData:(CupertinoIcons.chat_bubble_text),label: ""),
           FFNavigationBarItem(iconData: Icons.home,label: "",),
           FFNavigationBarItem(iconData:(Icons.view_agenda),label: ""),

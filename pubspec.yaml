@@ -58,6 +58,7 @@ dependencies:
   intl: ^0.17.0
   video_player: ^2.4.7
   dotted_border: ^2.0.0+2
+  flutter_stripe: ^9.2.1
 
 
 dev_dependencies:

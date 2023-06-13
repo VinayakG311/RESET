@@ -433,15 +433,18 @@ class _cardState extends State<card> {
       child: Row(
           children: <Widget>[
             for(int i=0;i<widget.appointment.length;i++)
+
               InkWell(
                 child: SizedBox(
                   height: 40,
                   width: 100,
                   child: Card(
+                    color: widget.appointment[i].isbooked==true? Colors.grey:null ,
                       shape: RoundedRectangleBorder(side: const BorderSide(color: Colors.black),borderRadius: BorderRadius.circular(15)),
                       child: Center(child: Text(widget.appointment[i].Timing!))),
                 ),
-                onTap: (){},
+                onTap: widget.appointment[i].isbooked==true?null: (){},
+
               )
 
 

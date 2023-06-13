@@ -12,10 +12,15 @@ import 'package:reset/loginRegister/registration_screen.dart';
 import 'components/Helpers.dart';
 import 'mainscreen.dart';
 import 'package:reset/Models/Database.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+const seckey="sk_test_51NDLhwSIp9cH6CWdKeV1819kOUchby3a4GN0NwoDNojoVsLghhWg1T2PyESQczx43zJ7TQhCn0ssq1PMTvRsLB9n00AIaaBVP1";
+const pkey="pk_test_51NDLhwSIp9cH6CWdM4Pl3FEBcKsriaRA0RivhnT1bwnjPdFxcm9d3PysA8R89rBB1KvLW3huLZID3pfyzm7tYIGo00CBiT98J6";
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = pkey;
+  await Stripe.instance.applySettings();
   await Firebase.initializeApp();
   User? currentUser = FirebaseAuth.instance.currentUser;
 

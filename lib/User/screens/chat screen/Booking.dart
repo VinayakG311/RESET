@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:reset/User/screens/chat%20screen/paymentScreen.dart';
 import '../../../Models/Database.dart';
 import '../../../components/Widgets.dart';
 import '../../../pag1-method2.dart';
@@ -338,13 +339,13 @@ class _ChatState extends State<Chat> {
 
                 }
                 else{
-                  return Container();
+                  return Container(child: Text("check again later"),);
 
                 }
 
               }
               else{
-                return Container();
+                return Container(child: Text("check again later"),);
               }
 
 
@@ -413,18 +414,9 @@ class _cardState extends State<card> {
                         TextButton(
                           onPressed: () async  {
                             Appointment newAppoint = widget.appointment[i];
-                            newAppoint.Patient = widget.userModel?.email;
-                            newAppoint.isbooked=true;
-                            print(newAppoint.uid);
-                            //print(newAppoint.Patient);
-                          //  await FirebaseFirestore.instance.collection("collectionPath")
-                            await FirebaseFirestore.instance.collection("users").doc(widget.userModel?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
-                            await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection("appointments").doc(widget.appointment[i].uid).set(newAppoint.toMap());
-
-                            await FirebaseFirestore.instance.collection("Professional").doc(widget.model?.uid).collection(newAppoint.Day!).doc(newAppoint.uid).set(newAppoint.toMap());
-
                             Navigator.pop(context, 'OK');
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ConfirmBooking(userModel: widget.userModel,firebaseUser: widget.firebaseUser,model: widget.model,appointment: widget.appointment[i],)));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PaymentScreen(userModel: widget.userModel,firebaseUser: widget.firebaseUser,model: widget.model,appointment: newAppoint,)));
+                          //  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ConfirmBooking(userModel: widget.userModel,firebaseUser: widget.firebaseUser,model: widget.model,appointment: widget.appointment[i],)));
 
                             //  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Calender(userModel: widget.userModel,firebaseuser: widget.firebaseuser,)));
                           },
