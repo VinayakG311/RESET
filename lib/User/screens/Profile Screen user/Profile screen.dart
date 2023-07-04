@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:reset/Models/Database.dart';
 import 'package:reset/SelectUser.dart';
+import 'package:reset/main.dart';
 import '../../../components/Widgets.dart';
 import 'CreateProfile.dart';
 
@@ -112,8 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextButton(
                 onPressed: () async{
                   await FirebaseAuth.instance.signOut();
-                  Navigator.popUntil(context, (route) => route.isFirst);
-                  Navigator.pushReplacementNamed(context,SelectUserScreen.id);
+                  Navigator.pushReplacement((context), MaterialPageRoute(builder: (context)=>RESET()));
                 },
                 child:  Padding(
                   padding: const EdgeInsets.only(left: 8.0),
