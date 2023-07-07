@@ -1,4 +1,4 @@
-# RESET
+<img width="334" alt="Screenshot 2023-07-07 at 10 37 20 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/738ae33d-f6a2-4b7d-8c35-089c4519cc44"># RESET
 
 **RESET** is a Flutter App where User can use features such as guided journalling, mood check-in, meditation, Listen to calm music, view posts , or have a chat with Professional. The professional can create posts, or manage their appointments with the users.
 
@@ -20,7 +20,7 @@ The Application uses **Flutter** as the framework of choice to build the app. Th
 
 ### Demo
 
-
+#### User
   View Posts and the User can like,add to collection or comment on the Post!
   
 https://github.com/VinayakG311/RESET/assets/96966973/9d465642-e91b-4e3d-aef5-1527af9e48bd
@@ -53,6 +53,32 @@ https://github.com/VinayakG311/RESET/assets/96966973/e7a3901e-0a0a-48be-b24d-a34
   Book an Appointment and text with Professional
 
 https://github.com/VinayakG311/RESET/assets/96966973/93c25cb6-3456-4214-8373-eb4c8b6b18fd
+
+
+
+#### Professional
+
+<details>
+  <summary>Professional Can View and Create Posts</summary>
+  <img width="334" alt="Screenshot 2023-07-07 at 10 37 20 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/94c6c494-d3a9-41bd-a854-2315acb8e58c">
+  <img width="333" alt="Screenshot 2023-07-07 at 10 37 02 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/9b3cc3a2-1c0d-428a-8e78-688098f9e3b1">
+</details>
+
+<details>
+  <summary>Professional Can check their Earnings and Ratings</summary>
+  <img width="335" alt="Screenshot 2023-07-07 at 10 39 03 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/173d8ba4-7133-490e-84dc-d169ab7f780d">
+</details>
+
+<details>
+  <summary>Professional can talk to clients</summary>
+  <img width="335" alt="Screenshot 2023-07-07 at 10 39 03 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/77133227-3b07-43df-a5e5-623c0f3c1ecf">
+
+</details>
+
+
+  Professional Can also Create Appointments
+
+https://github.com/VinayakG311/RESET/assets/96966973/d5c030c9-9aa6-4e1c-8651-e687b247df64
 
 
 
