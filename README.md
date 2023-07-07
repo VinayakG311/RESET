@@ -23,5 +23,5 @@ The Application uses **Flutter** as the framework of choice to build the app. Th
 
 
 View Posts and the User can like,add to collection or comment on the Post!
-https://github.com/VinayakG311/RESET/assets/96966973/7b98dde1-704c-4689-afc2-d954621ae58e
+![Video1](https://github.com/VinayakG311/RESET/assets/96966973/7b98dde1-704c-4689-afc2-d954621ae58e)
 
