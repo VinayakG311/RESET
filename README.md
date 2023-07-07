@@ -20,6 +20,29 @@ The Application uses **Flutter** as the framework of choice to build the app. Th
 
 ### Demo
 
+#### Login and Register
+
+  <details>
+    <summary>Choose the type</summary>
+    <img width="333" alt="Screenshot 2023-07-07 at 10 53 57 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/5ccb15c0-434b-43c3-bd27-df318b03a8fe">
+  </details>
+  <details>
+    <summary>Login or Register</summary>
+    <img width="336" alt="Screenshot 2023-07-07 at 10 56 13 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/302adb72-00a4-4b85-8ff1-4ec68a73cf8f">
+
+  </details>
+  <details>
+    <summary>Login</summary>
+    <img width="341" alt="Screenshot 2023-07-07 at 10 55 12 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/93c99a06-a005-4b5a-b70a-b864c4b046a7">
+
+    
+  </details>
+    <details>
+    <summary>Register</summary>
+    <img width="344" alt="Screenshot 2023-07-07 at 10 56 29 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/bb207a7f-eaa2-403a-965e-247e781e4cee">
+
+    
+  </details>
 #### User
   View Posts and the User can like,add to collection or comment on the Post!
   
