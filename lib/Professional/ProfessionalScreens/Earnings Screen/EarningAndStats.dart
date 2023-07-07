@@ -50,7 +50,7 @@ class _EarningAndStatsState extends State<EarningAndStats> {
             ),
           ),
           OutlinedButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HistoryEarning(model: widget.model,firebaseUser: widget.firebaseUser,)));
+           // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HistoryEarning(model: widget.model,firebaseUser: widget.firebaseUser,)));
           //  controller.animateTo(0, duration: Duration(seconds: 1), curve: Curves.easeIn);
             
           }, child: Text("Check Earnings history",style: TextStyle(color: Colors.black),)),
@@ -82,7 +82,7 @@ class _EarningAndStatsState extends State<EarningAndStats> {
             ),
           ),
           OutlinedButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HistoryRating(model: widget.model,firebaseUser: widget.firebaseUser,)));
+          //  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>HistoryRating(model: widget.model,firebaseUser: widget.firebaseUser,)));
           }, child: Text("Check Ratings history",style: TextStyle(color: Colors.black),)),
 
           // Card(
