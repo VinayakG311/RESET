@@ -37,8 +37,8 @@ https://github.com/VinayakG311/RESET/assets/96966973/9d465642-e91b-4e3d-aef5-152
 <details>
   <summary>User Can meditate</summary>
    <img width="340" alt="Screenshot 2023-07-07 at 9 10 31 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/e96a41ad-0537-4cda-a235-e9ad85545d04">
-  <img width="340" alt="Screenshot 2023-07-07 at 9 10 56 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/227fff02-3400-4633-8b34-7bad7dea9a49">
-  <img width="340" alt="Screenshot 2023-07-07 at 9 11 03 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/4eacff53-0c30-4f0c-9f5a-422958eaab48">
+  <img width="1440" alt="Screenshot 2023-07-07 at 9 10 56 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/227fff02-3400-4633-8b34-7bad7dea9a49">
+  <img width="1440" alt="Screenshot 2023-07-07 at 9 11 03 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/4eacff53-0c30-4f0c-9f5a-422958eaab48">
   <img width="346" alt="Screenshot 2023-07-07 at 9 11 38 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/c714d51b-4deb-4eb3-8523-4eb57d82cb24">
 </details>
 
