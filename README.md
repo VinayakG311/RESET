@@ -21,13 +21,17 @@ The Application uses **Flutter** as the framework of choice to build the app. Th
 ### Demo
 
 
+<details>
+  <details>
+    <summary>View Posts and the User can like,add to collection or comment on the Post!</summary>
+    https://github.com/VinayakG311/RESET/assets/96966973/9d465642-e91b-4e3d-aef5-1527af9e48bd
+  </details>
+  
+</details>
 
-View Posts and the User can like,add to collection or comment on the Post!
 
 
 
 
-
-https://github.com/VinayakG311/RESET/assets/96966973/15a0f2fe-6c3d-4192-b65b-bfb661f6687c
 
 
