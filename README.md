@@ -43,6 +43,7 @@ The Application uses **Flutter** as the framework of choice to build the app. Th
 
     
   </details>
+  
 #### User
 
   View Posts and the User can like,add to collection or comment on the Post!
