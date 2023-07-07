@@ -1,4 +1,4 @@
-<img width="334" alt="Screenshot 2023-07-07 at 10 37 20 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/738ae33d-f6a2-4b7d-8c35-089c4519cc44"># RESET
+# RESET
 
 **RESET** is a Flutter App where User can use features such as guided journalling, mood check-in, meditation, Listen to calm music, view posts , or have a chat with Professional. The professional can create posts, or manage their appointments with the users.
 
@@ -71,7 +71,8 @@ https://github.com/VinayakG311/RESET/assets/96966973/93c25cb6-3456-4214-8373-eb4
 
 <details>
   <summary>Professional can talk to clients</summary>
-  <img width="335" alt="Screenshot 2023-07-07 at 10 39 03 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/77133227-3b07-43df-a5e5-623c0f3c1ecf">
+  <img width="337" alt="Screenshot 2023-07-07 at 10 38 45 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/67b08a09-4828-4bc5-bf66-c6a5bb9a2c49">
+
 
 </details>
 
