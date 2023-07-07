@@ -46,6 +46,18 @@ https://github.com/VinayakG311/RESET/assets/96966973/9d465642-e91b-4e3d-aef5-152
 
 https://github.com/VinayakG311/RESET/assets/96966973/e5a43fac-be91-49a8-a273-3a5580c5f942
 
+  User Can keep a Calender, where they can add,strike,delete Tasks
+
+  
+
+https://github.com/VinayakG311/RESET/assets/96966973/e7a3901e-0a0a-48be-b24d-a340e268d7c7
+
+
+
+
+
+
+
 
 
 
