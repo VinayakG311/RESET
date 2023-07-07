@@ -42,13 +42,9 @@ https://github.com/VinayakG311/RESET/assets/96966973/9d465642-e91b-4e3d-aef5-152
   <img width="337" alt="Screenshot 2023-07-07 at 9 48 51 PM" src="https://github.com/VinayakG311/RESET/assets/96966973/98dd6e03-a05d-47e8-b1ac-3f24768dd068">
 </details>
 
+  User Can Keep a guided journal, and check saved journals.
 
-
-
-
-
-
-https://github.com/VinayakG311/RESET/assets/96966973/f0ffee06-5425-4a65-a724-7e3f1aaf4742
+https://github.com/VinayakG311/RESET/assets/96966973/e5a43fac-be91-49a8-a273-3a5580c5f942
 
 
 
